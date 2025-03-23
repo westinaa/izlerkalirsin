@@ -2,7 +2,7 @@
   "name": "westina-bots",
   "version": "v1.0.0",
   "description": "westina-bots",
-  "author": "Agaçı Kökten Westina Götten",
+  "author": "for ASTELIA",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
