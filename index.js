@@ -52,6 +52,12 @@ client
     console.error("Promise Hatası: ", err);
   });
 
+app.get("/", (req, res) => {
+    res.send("A S T E L I A");
+});
+app.listen(3000, () => {
+    console.log("Web server is online!");
+});
 
 ///// slash commands
  const { REST } = require('@discordjs/rest');
