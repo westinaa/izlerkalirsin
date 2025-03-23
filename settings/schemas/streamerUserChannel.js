@@ -1,10 +1,12 @@
-const { Schema, model } = require("mongoose");
+const mongoose = require('mongoose');
 
-const StreamerUserChannel = Schema({
-    guildID: String,
-    userID: String,
-    channelID: String,
-    channelData: Number,
+const streamerUserChannelSchema = new mongoose.Schema({
+    guildID: { type: String, required: true },
+    userID: { type: String, required: true },
+    ChannelID: { type: String, required: true }, // Buraya ekliyoruz
+    ChannelData: { type: Number, default: 0 }
 });
 
-module.exports = model("StreamerUserChannel", StreamerUserChannel);
+const StreamerUserChannel = mongoose.model('StreamerUserChannel', streamerUserChannelSchema);
+
+module.exports = StreamerUserChannel;
