@@ -5,6 +5,8 @@ discordModals(client);
 const conf = require("./settings/configs/sunucuayar.json");
 const fs = require("fs");
 const moment = global.moment = require("moment");
+const express = require("express");
+const app = express();
 client.commands = new Collection();
 client.aliases = new Collection();
 client.cooldown = new Map();
