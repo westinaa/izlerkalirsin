@@ -15,7 +15,7 @@ const emojidb = (global.emojidb = new Database("./settings/configs/emojis.json")
 const allah = require("./config.js");
 const token = process.env.TOKEN
 //KOMUT ÇALIŞTIRMA
-fs.readdir('./src/Commands/', (err, files) => {
+fs.readdir('./src/commands/', (err, files) => {
   if (err) console.error(err);
   console.log(`[westina] ${files.length} komut yüklenecek.`);
   files.forEach(f => {
@@ -52,7 +52,7 @@ client
 
 
 ///// slash commands
-const { REST } = require('@discordjs/rest');
+/* const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v10');  
 client.slashcommands = new Collection();
 var slashcommands = [];
@@ -80,7 +80,7 @@ try {
 catch (e) {
   console.error(e);
 }
-})();
+})();*/
 
 client.on('interactionCreate', (interaction) => {
 if (interaction.type == InteractionType.ApplicationCommand) {

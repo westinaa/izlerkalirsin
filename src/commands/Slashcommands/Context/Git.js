@@ -1,6 +1,6 @@
 const { ApplicationCommandType } = require('discord-api-types/v10');
 const { PermissionsBitField, ButtonStyle, ComponentType, ContextMenuCommandBuilder, hyperlink, EmbedBuilder, ActionRowBuilder, ButtonBuilder, IntegrationApplication } = require("discord.js");
-const allah = require("../../../config");
+const allah = require("../../../config.js");
 const ayar = require("../../../settings/configs/sunucuayar.json");
 const { green, red } = require("../../../settings/configs/emojis.json");
 const moment = require("moment");
