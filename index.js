@@ -52,13 +52,6 @@ client
     console.error("Promise Hatası: ", err);
   });
 
-app.get("/", (req, res) => {
-    res.send("A S T E L I A");
-});
-app.listen(3000, () => {
-    console.log("Web server is online!");
-});
-
 ///// slash commands
  const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v10');  
@@ -133,14 +126,14 @@ await botClient.login(token);
 });
 
 
- const { joinVoiceChannel, getVoiceConnection } = require("@discordjs/voice");
+ // const { joinVoiceChannel, getVoiceConnection } = require("@discordjs/voice");
 client.on('ready', async () => {
   console.log(`Bot ${client.user.tag} olarak giriş yaptı.`);
 
   let guild = client.guilds.cache.get(allah.GuildID);
   await guild.members.fetch();
 
-  const connection = getVoiceConnection(allah.GuildID);
+ /* const connection = getVoiceConnection(allah.GuildID);
   if (connection) return;
 
   setInterval(async () => {
@@ -154,7 +147,7 @@ client.on('ready', async () => {
               selfMute: true
           });
       }
-  }, 5000); 
+  }, 5000); */
 
   let activities = allah.BotDurum, i = 0;
   setInterval(() => client.user.setActivity({ name: `${activities[i++ % activities.length]}`,
@@ -162,7 +155,12 @@ client.on('ready', async () => {
     url: "https://www.twitch.tv/westina"}), 10000);
 });
 
-
+app.get("/", (req, res) => {
+    res.send("A S T E L I A");
+});
+app.listen(3000, () => {
+    console.log("[WESTINA PORT] Port bağlantışı başarıyla kuruldu.");
+});
 
 
 let aylartoplam = { "01": "Ocak", "02": "Şubat", "03": "Mart", "04": "Nisan", "05": "Mayıs", "06": "Haziran", "07": "Temmuz", "08": "Ağustos", "09": "Eylül", "10": "Ekim", "11": "Kasım", "12": "Aralık" };
