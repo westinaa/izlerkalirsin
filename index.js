@@ -80,7 +80,7 @@ try {
 catch (e) {
   console.error(e);
 }
-})();*/
+})();
 
 client.on('interactionCreate', (interaction) => {
 if (interaction.type == InteractionType.ApplicationCommand) {
@@ -93,7 +93,7 @@ if (!command) return interaction.reply({ content: 'Bu komut kullanılamıyor.', 
 } catch {
 interaction.reply({content: "Komut çalıştırılırken bir sorunla karşılaşıldı! Lütfen tekrar deneyin.", ephemeral: true})
 }}
-});
+});*/
 
 const bots = global.allbots = [];
 let tkn = []
