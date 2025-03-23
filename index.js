@@ -142,7 +142,8 @@ client.on('ready', async () => {
               channelId: VoiceChannel.id,
               guildId: VoiceChannel.guild.id,
               adapterCreator: VoiceChannel.guild.voiceAdapterCreator,
-              selfDeaf: true
+              selfDeaf: true,
+              selfMute: true
           });
       }
   }, 5000);
