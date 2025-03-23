@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const schema = Schema({
+const voiceStatsSchema = new mongoose.Schema({
   guildID: String,
   userID: String,
   channelID: String,
