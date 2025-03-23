@@ -127,14 +127,14 @@ await botClient.login(token);
 });
 
 
-// const { joinVoiceChannel, getVoiceConnection } = require("@discordjs/voice");
+ const { joinVoiceChannel, getVoiceConnection } = require("@discordjs/voice");
 client.on('ready', async () => {
   console.log(`Bot ${client.user.tag} olarak giriş yaptı.`);
 
   let guild = client.guilds.cache.get(allah.GuildID);
   await guild.members.fetch();
 
- /* const connection = getVoiceConnection(allah.GuildID);
+  const connection = getVoiceConnection(allah.GuildID);
   if (connection) return;
 
   setInterval(async () => {
@@ -148,7 +148,7 @@ client.on('ready', async () => {
               selfMute: true
           });
       }
-  }, 5000); */
+  }, 5000); 
 
   let activities = allah.BotDurum, i = 0;
   setInterval(() => client.user.setActivity({ name: `${activities[i++ % activities.length]}`,
