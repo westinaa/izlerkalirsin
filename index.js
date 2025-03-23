@@ -52,7 +52,7 @@ client
 
 
 ///// slash commands
-/* const { REST } = require('@discordjs/rest');
+ const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v10');  
 client.slashcommands = new Collection();
 var slashcommands = [];
@@ -93,7 +93,7 @@ if (!command) return interaction.reply({ content: 'Bu komut kullanılamıyor.', 
 } catch {
 interaction.reply({content: "Komut çalıştırılırken bir sorunla karşılaşıldı! Lütfen tekrar deneyin.", ephemeral: true})
 }}
-});*/
+});
 
 const bots = global.allbots = [];
 let tkn = []
