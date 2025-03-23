@@ -19,7 +19,7 @@ fs.readdir('./src/commands/', (err, files) => {
   if (err) console.error(err);
   console.log(`[westina] ${files.length} komut yüklenecek.`);
   files.forEach(f => {
-    fs.readdir("./src/Commands/" + f, (err2, files2) => {
+    fs.readdir("./src/commands/" + f, (err2, files2) => {
       files2.forEach(file => {
         let props = require(`./src/Commands/${f}/` + file);
         console.log(`[westina Commands] ${props.conf.name} komutu yüklendi!`);
