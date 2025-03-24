@@ -1,12 +1,13 @@
 const { AttachmentBuilder, EmbedBuilder } = require('discord.js');
 const fs = require('fs');
 const path = require('path');
+const canvas = require('canvas');
 const conf = require("../../../settings/configs/sunucuayar.json");
 const ayar = require("../../../settings/configs/ayarName.json");
 
 module.exports = {
     conf: {
-        aliases: ["ata", "ataturk"],
+        aliases: ["atam", "ataturk"],
         name: "atatürk",
         help: "atatürk",
         category: "genel",
@@ -25,9 +26,36 @@ module.exports = {
             const randomImage = images[Math.floor(Math.random() * images.length)];
             const imagePath = path.join(imagesPath, randomImage);
             const attachment = new AttachmentBuilder(imagePath, { name: randomImage });
-            
+
+            // Renk analizi
+            const img = await canvas.loadImage(imagePath);
+            const ctx = canvas.createCanvas(img.width, img.height);
+            ctx.drawImage(img, 0, 0, img.width, img.height);
+            const imageData = ctx.getImageData(0, 0, img.width, img.height);
+            const pixels = imageData.data;
+
+            let colorCount = {};
+
+            // Renkleri sayıyoruz
+            for (let i = 0; i < pixels.length; i += 4) {
+                const r = pixels[i];
+                const g = pixels[i + 1];
+                const b = pixels[i + 2];
+
+                const color = `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+
+                if (colorCount[color]) {
+                    colorCount[color]++;
+                } else {
+                    colorCount[color] = 1;
+                }
+            }
+
+            // En fazla olan rengi buluyoruz
+            const mostCommonColor = Object.keys(colorCount).reduce((a, b) => colorCount[a] > colorCount[b] ? a : b);
+
             const embed = new EmbedBuilder()
-                .setColor('#ff0000')
+                .setColor(mostCommonColor) // Bulunan baskın rengi embed rengini yapıyoruz
                 .setTitle('Ulu Önder Mustafa Kemal Atatürk')
                 .setImage(`attachment://${attachment.name}`)
                 .setFooter({ text: "1881 - ∞" });
