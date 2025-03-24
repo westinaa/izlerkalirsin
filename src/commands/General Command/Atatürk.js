@@ -13,7 +13,7 @@ module.exports = {
     },
     run: async (client, message, args) => {
         try {
-            await message.delete();
+            if (message.deletable) await message.delete();
             
             const imagesPath = path.join(__dirname, '../../images');
             const images = fs.readdirSync(imagesPath).filter(file => file.endsWith('.jpg') || file.endsWith('.png'));
@@ -27,7 +27,7 @@ module.exports = {
             const attachment = new AttachmentBuilder(imagePath, { name: randomImage });
             
             const embed = new EmbedBuilder()
-                .setColor('Red')
+                .setColor('##ff0000')
                 .setTitle('Ulu Önder Mustafa Kemal Atatürk')
                 .setImage(`attachment://${attachment.name}`)
                 .setFooter({ text: "1881 - ∞" });
