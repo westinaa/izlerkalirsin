@@ -14,15 +14,18 @@ module.exports = {
     },
     run: async (client, message, args) => {
         try {
+            // global.bot yerine client'i global.bot olarak kullanacağız.
+            const bot = global.bot;  // global bot nesnesini burada kullanıyoruz
+
             await message.delete();
-            
+
             const imagesPath = path.join(__dirname, '../../images');
             const images = fs.readdirSync(imagesPath).filter(file => file.endsWith('.jpg') || file.endsWith('.png'));
-            
+
             if (images.length === 0) {
                 return message.channel.send('Görsel bulunamadı. Lütfen src/images klasörünü kontrol edin.');
             }
-            
+
             const randomImage = images[Math.floor(Math.random() * images.length)];
             const imagePath = path.join(imagesPath, randomImage);
             const attachment = new AttachmentBuilder(imagePath, { name: randomImage });
