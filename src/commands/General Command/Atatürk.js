@@ -27,7 +27,7 @@ module.exports = {
             const attachment = new AttachmentBuilder(imagePath, { name: randomImage });
             
             const embed = new EmbedBuilder()
-                .setColor('##ff0000')
+                .setColor('#ff0000')
                 .setTitle('Ulu Önder Mustafa Kemal Atatürk')
                 .setImage(`attachment://${attachment.name}`)
                 .setFooter({ text: "1881 - ∞" });
