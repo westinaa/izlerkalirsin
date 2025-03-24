@@ -1,13 +1,21 @@
 const { AttachmentBuilder, EmbedBuilder } = require('discord.js');
 const fs = require('fs');
 const path = require('path');
+const conf = require("../../../settings/configs/sunucuayar.json");
+const ayar = require("../../../settings/configs/ayarName.json");
 
 module.exports = {
-    name: "atatürk",
-    aliases: [],
-   run: async execute(client, message, args) {
+    conf: {
+        aliases: ["atam", "ataturk"],
+        name: "atatürk",
+        help: "Atatürk",
+        category: "kullanıcı",
+    },
+    run: async (client, message, args) => {
         try {
-            const imagesPath = path.join(__dirname, '../images');
+            await message.delete();
+            
+            const imagesPath = path.join(__dirname, '../../images');
             const images = fs.readdirSync(imagesPath).filter(file => file.endsWith('.jpg') || file.endsWith('.png'));
             
             if (images.length === 0) {
@@ -20,6 +28,7 @@ module.exports = {
             
             const embed = new EmbedBuilder()
                 .setColor('Red')
+                .setTitle('Ulu Önder Mustafa Kemal Atatürk')
                 .setImage(`attachment://${randomImage}`)
                 .setFooter({ text: "1881 - ∞" });
             
