@@ -13,7 +13,7 @@ module.exports = {
     },
     run: async (client, message, args) => {
         try {
-            if (message.deletable) await message.delete();
+            await message.delete();
             
             const imagesPath = path.join(__dirname, '../../images');
             const images = fs.readdirSync(imagesPath).filter(file => file.endsWith('.jpg') || file.endsWith('.png'));
