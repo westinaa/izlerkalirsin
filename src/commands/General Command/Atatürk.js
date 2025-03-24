@@ -29,8 +29,10 @@ module.exports = {
 
             // Renk analizi
             const img = await canvas.loadImage(imagePath);
-            const ctx = canvas.createCanvas(img.width, img.height);
-            ctx.drawImage(img, 0, 0, img.width, img.height);
+            const canvasObj = canvas.createCanvas(img.width, img.height);  // create canvas object
+            const ctx = canvasObj.getContext('2d');  // get context after creating canvas object
+            ctx.drawImage(img, 0, 0, img.width, img.height); // now draw the image
+
             const imageData = ctx.getImageData(0, 0, img.width, img.height);
             const pixels = imageData.data;
 
