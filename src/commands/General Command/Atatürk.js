@@ -6,10 +6,10 @@ const ayar = require("../../../settings/configs/ayarName.json");
 
 module.exports = {
     conf: {
-        aliases: ["atam", "ataturk"],
+        aliases: ["ata", "ataturk"],
         name: "atatürk",
-        help: "Atatürk",
-        category: "kullanıcı",
+        help: "atatürk",
+        category: "genel",
     },
     run: async (client, message, args) => {
         try {
@@ -24,12 +24,12 @@ module.exports = {
             
             const randomImage = images[Math.floor(Math.random() * images.length)];
             const imagePath = path.join(imagesPath, randomImage);
-            const attachment = new AttachmentBuilder(imagePath);
+            const attachment = new AttachmentBuilder(imagePath, { name: randomImage });
             
             const embed = new EmbedBuilder()
                 .setColor('Red')
                 .setTitle('Ulu Önder Mustafa Kemal Atatürk')
-                .setImage(`attachment://${randomImage}`)
+                .setImage(`attachment://${attachment.name}`)
                 .setFooter({ text: "1881 - ∞" });
             
             await message.channel.send({ embeds: [embed], files: [attachment] });
