@@ -2,9 +2,9 @@
 
 module.exports = {
     GuildID: "1345788241533472991",
-    GuildName: "A S T E L I A",
+    GuildName: "E D E P S I Z",
     owners: ["474006896408264712"],
-    BotDurum: ["ASTELIA", "astelia"],
+    BotDurum: ["Edepsiz."],
     BotSesKanal: "1345796072039125063",
     AltBaşlık: "1345788242519265433",
     mongoUrl: process.env.MONGO,
