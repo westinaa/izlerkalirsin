@@ -7,12 +7,10 @@ module.exports = {
     name: "url",
     help: "url",
     category: "sahip",
-    owner: true,
   },
 
   run: async (client, message, args) => {
     try {
-      const invites = await message.guild.invites.fetch();
       let özelURL = conf.serverUrl; // Özel davet linki (sunucuayar.json içinde tanımlı olmalı)
       
       // Eğer özelURL tam link olarak tanımlıysa, sadece kod kısmını al
@@ -20,10 +18,11 @@ module.exports = {
         özelURL = özelURL.split("/").pop();
       }
       
-      const özelDavet = invites.find(inv => inv.code === özelURL);
-      if (!özelDavet) return message.reply("Özel davet bağlantısı bulunamadı!");
+      // Daveti doğrudan API'den çekmeyi deniyoruz
+      const özelDavet = await client.fetchInvite(özelURL).catch(() => null);
+      if (!özelDavet) return message.reply("Özel davet bağlantısı bulunamadı veya geçersiz!");
       
-      message.channel.send(`${özelURL}\n**Kullanım Sayısı:** \`${özelDavet.uses}\``);
+      message.channel.send(`${özelURL}\n**Kullanım Sayısı:** \`${özelDavet.uses || 0}\``);
     } catch (error) {
       console.error("Davetleri çekerken hata oluştu:", error);
       message.reply("Bir hata oluştu, lütfen tekrar deneyin.");
