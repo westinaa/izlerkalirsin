@@ -22,7 +22,7 @@ module.exports = {
       const özelDavet = await client.fetchInvite(özelURL).catch(() => null);
       if (!özelDavet) return message.reply("Özel davet bağlantısı bulunamadı veya geçersiz!");
       
-      message.channel.send(`${özelURL}\n**Kullanım Sayısı:** \`${özelDavet.uses || 0}\``);
+      message.channel.send(`discord.gg/${özelURL}\n\`Kullanım:\` **${özelDavet.uses || 0}**`);
     } catch (error) {
       console.error("Davetleri çekerken hata oluştu:", error);
       message.reply("Bir hata oluştu, lütfen tekrar deneyin.");
