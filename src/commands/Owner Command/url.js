@@ -13,18 +13,12 @@ module.exports = {
   run: async (client, message, args) => {
     try {
       const invites = await message.guild.invites.fetch();
-      const özelURL = conf.serverURL; // Özel davet linki (sunucuayar.json içinde tanımlı olmalı)
+      const özelURL = conf.serverUrl; // Özel davet linki (sunucuayar.json içinde tanımlı olmalı)
       
       const özelDavet = invites.find(inv => inv.code === özelURL);
       if (!özelDavet) return message.reply("Özel davet bağlantısı bulunamadı!");
       
-      const embed = new EmbedBuilder()
-        .setTitle("Özel Sunucu Daveti")
-        .setDescription(`🔗 **Davet Bağlantısı:** ${özelURL}\n👥 **Kullanım Sayısı:** ${özelDavet.uses}`)
-        .setColor("Random")
-        .setFooter({ text: message.guild.name, iconURL: message.guild.iconURL() });
-      
-      message.channel.send({ embeds: [embed] });
+      message.channel.send(`${özelURL}\n**Kullanım Sayısı:** \`${özelDavet.uses}\``);
     } catch (error) {
       console.error("Davetleri çekerken hata oluştu:", error);
       message.reply("Bir hata oluştu, lütfen tekrar deneyin.");
