@@ -156,7 +156,7 @@ client.on('ready', async () => {
 });
 
 app.get("/", (req, res) => {
-    res.send("A S T E L I A");
+    res.send("Edepsiz");
 });
 const PORT = 3000;
 app.listen(PORT, () => console.log(`Sunucu çalışıyor: http://localhost:${PORT}`));
