@@ -34,7 +34,7 @@ module.exports = {
     } else if(toplamBan > 0) {
     message.guild.bans.fetch().then(banned => {
     let text = banned.map(user => `ID: | Kullanıcı Adı:\n${user.user.id} | ${user.user.tag}`).join('\n'); 
-    message.channel.send({ content:`Sunucudan siktir edilen toplam **${banned.size}** yasaklı kullanıcı listesi;`, files: [{ attachment: Buffer.from(text), name: "banlist.js" }] });
+    message.channel.send({ content:`Sunucudan siktir edilen toplam **${banned.size}** yasaklı kullanıcı listesi;`, files: [{ attachment: Buffer.from(text), name: "banlist.txt" }] });
     })
   }
   },
