@@ -158,11 +158,17 @@ client.on('ready', async () => {
 app.get("/", (req, res) => {
     res.send("A S T E L I A");
 });
-app.listen(3000, () => {
-    console.log("[WESTINA PORT] Port bağlantışı başarıyla kuruldu.");
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Sunucu çalışıyor: http://localhost:${PORT}`));
+
+setInterval(() => {
+    require('node-fetch')('https://astelia-w2cx.onrender.com/').catch(err => console.log(err));
+}, 1000 * 60 * 4); // 4 dakikada bir ping atar
+
+process.on('unhandledRejection', (reason, promise) => {
+    console.error('Unhandled Rejection at:', promise, 'reason:', reason);
 });
-
-
+
 let aylartoplam = { "01": "Ocak", "02": "Şubat", "03": "Mart", "04": "Nisan", "05": "Mayıs", "06": "Haziran", "07": "Temmuz", "08": "Ağustos", "09": "Eylül", "10": "Ekim", "11": "Kasım", "12": "Aralık" };
 global.aylar = aylartoplam;
 
