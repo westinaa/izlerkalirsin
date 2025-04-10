@@ -1,4 +1,4 @@
-# ASTELIA
+# @izlerkalirsin
 
 ### Bot Sahibi: westina
 
@@ -6,7 +6,7 @@
 
 ## Hakkında
 
-Bu bot ASTELIA sunucusu için @westina tarafından yapılmıştır
+Bu bot @izlerkalirsin sunucusu için @westina tarafından yapılmıştır
 Tüm testleri eksiksiz yapılmıştır, hataları çözülmüş olup sorunsuz çalışmaktadır.
 
 ## Özellikler
