@@ -1,12 +1,12 @@
 // require('dotenv').config();
 
 module.exports = {
-    GuildID: "1345788241533472991",
-    GuildName: "E D E P S I Z",
+    GuildID: "1357115287044100216",
+    GuildName: "izler kalır @izlerkalirsin",
     owners: ["474006896408264712"],
-    BotDurum: ["Edepsiz 🤍 Westina"],
-    BotSesKanal: "1345796072039125063",
-    AltBaşlık: "1345788242519265433",
+    BotDurum: ["@izlerkalirsin"],
+    BotSesKanal: "1357154558870163647",
+    AltBaşlık: "1357152711404945648",
     mongoUrl: process.env.MONGO,
     Main: {
         ModerationToken: process.env.TOKEN,
