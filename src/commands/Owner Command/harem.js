@@ -6,7 +6,8 @@ module.exports = {
     aliases: ["harem"],
     name: "harem",
     help: "harem <@etiket veya ID>",
-    category: "owner",
+    category: "sahip",
+    owner: "true",
   },
 
   run: async (client, message, args, embed, prefix) => {
