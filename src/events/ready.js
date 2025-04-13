@@ -69,26 +69,34 @@ setInterval(async () => {
     } 
   });
   
-// Ses kanalına bağlanma
 let botVoiceChannel = client.channels.cache.get("1357154558870163647");
-if (botVoiceChannel && botVoiceChannel.isVoiceBased()) {
-  const existingConnection = require("@discordjs/voice").getVoiceConnection(botVoiceChannel.guild.id);
+
+// Botun sesli kanalda olup olmadığını kontrol et
+async function ensureBotIsConnected() {
+  const guild = botVoiceChannel.guild;
+  const existingConnection = getVoiceConnection(guild.id);
 
   if (!existingConnection) {
     try {
+      // Bağlantı yoksa tekrar bağlan
       const connection = joinVoiceChannel({
         channelId: botVoiceChannel.id,
-        guildId: botVoiceChannel.guild.id,
-        adapterCreator: botVoiceChannel.guild.voiceAdapterCreator,
-        selfDeaf: true
+        guildId: guild.id,
+        adapterCreator: guild.voiceAdapterCreator,
+        selfDeaf: true,
       });
 
       console.log('Bot ses kanalına bağlandı!');
     } catch (err) {
       console.error("[HATA] Bot ses kanalına bağlanamadı!", err);
     }
+  } else {
+    console.log('Bot zaten ses kanalında!');
   }
 }
+
+// Bağlantıyı sürekli kontrol et
+setInterval(ensureBotIsConnected, 120000); // Her 120 saniyede bir kontrol et
 
 
  // console.log("conf.chatMute türü:", typeof conf.chatMute);
