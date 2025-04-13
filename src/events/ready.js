@@ -78,6 +78,11 @@ setInterval(async () => {
       adapterCreator: botVoiceChannel.guild.voiceAdapterCreator, // Sesli kanal bağlantısı için adapter
     });
 
+     console.log('Bot ses kanalına bağlandı!');
+   } catch (err) {
+     console.error("[HATA] Bot ses kanalına bağlanamadı!", err);
+   }
+
  // console.log("conf.chatMute türü:", typeof conf.chatMute);
  // console.log("conf.chatMute içeriği:", conf.chatMute); 
 
