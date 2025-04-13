@@ -130,7 +130,18 @@ Man Roles: (${ayar.erkekRolleri > 0 ? `${ayar.erkekRolleri.map(x => `<@&${x}>`).
 Woman Roles: (${ayar.kizRolleri > 0 ? `${ayar.kizRolleri.map(x => `<@&${x}>`).join(",")}` : "\`YOK\`"})
 Unregister Role: (${ayar.unregRoles > 0 ? `${ayar.unregRoles.map(x => `<@&${x}>`).join(",")}` : "\`YOK\`"})
 Booster Role: (${ayar.boosterRolu ? `<@&${ayar.boosterRolu}>` : "\`YOK\`"})
-Kayıt Yetkili Roles: (${ayar.teyitciRolleri > 0 ? `${ayar.teyitciRolleri.map(x => `<@&${x}>`).join(",")}` : "\`YOK\`"})
+const teyitciRolleri = Array.isArray(ayar.teyitciRolleri)
+    ? ayar.teyitciRolleri
+    : ayar.teyitciRolleri
+        ? [ayar.teyitciRolleri]
+        : [];
+
+const rolBilgisi = `Kayıt Yetkili Roles: (${teyitciRolleri.length > 0 
+    ? teyitciRolleri.map(x => `<@&${x}>`).join(", ") 
+    : "`YOK`"})`;
+
+console.log(rolBilgisi);
+
 Sahip Roles: (${ayar.sahipRolu > 0 ? `${ayar.sahipRolu.map(x => `<@&${x}>`).join(",")}` : "\`YOK\`"})
 Toplantı Katıldı Role: (${ayar.Katıldı ? `<@&${ayar.Katıldı}>` : "\`YOK\`"})
 Jail Role: (${ayar.jailRole > 0 ? `${ayar.jailRole.map(x => `<@&${x}>`).join(",")}` : "\`YOK\`"})
