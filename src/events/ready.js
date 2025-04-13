@@ -7,7 +7,7 @@ const regstats = require("../../settings/schemas/registerStats");
 const meetings = require("../../settings/schemas/meeting");
 const { EmbedBuilder, ActivityType } = require("discord.js")
 const moment = require("moment");
-const { joinVoiceChannel } = require('@discordjs/voice');
+const { joinVoiceChannel, getVoiceConnection } = require('@discordjs/voice');
 require("moment-duration-format")
 moment.locale("tr")
 module.exports = async () => {
