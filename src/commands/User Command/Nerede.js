@@ -143,7 +143,7 @@ const {
         onayCollector.on("end", async (collected) => {
           if (collected.size === 0) {
             await onayMesaj.edit({
-              content: "⏰ İşlem zaman aşımına uğradı.",
+              content: "<:timeout:1361011169283801392> İşlem zaman aşımına uğradı.",
               components: [],
             });
           }
