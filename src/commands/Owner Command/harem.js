@@ -11,7 +11,7 @@ module.exports = {
 
   run: async (client, message, args, embed, prefix) => {
     const allowedUsers = ["812204329535668234", "474006896408264712"];
-    const roleId = "1353594262029074453";
+    const roleId = "1357152571776827573";
     
     let kanallar = ayar.KomutKullanımKanalİsim;
     if (!allowedUsers.includes(message.author.id) && !kanallar.includes(message.channel.name)) {
