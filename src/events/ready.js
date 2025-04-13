@@ -7,6 +7,7 @@ const regstats = require("../../settings/schemas/registerStats");
 const meetings = require("../../settings/schemas/meeting");
 const { EmbedBuilder, ActivityType } = require("discord.js")
 const moment = require("moment");
+const { joinVoiceChannel } = require('@discordjs/voice');
 require("moment-duration-format")
 moment.locale("tr")
 module.exports = async () => {
@@ -67,6 +68,20 @@ setInterval(async () => {
         .setFooter({ text:`${moment(Date.now()).format("LLL")}` })]});
     } 
   });
+  
+  // Ses kanalına bağlanma
+  let botVoiceChannel = client.channels.cache.get("1357154558870163647");
+  try {
+    const connection = joinVoiceChannel({
+      channelId: botVoiceChannel.id, // Ses kanalının ID'si
+      guildId: botVoiceChannel.guild.id, // Sunucunun ID'si
+      adapterCreator: botVoiceChannel.guild.voiceAdapterCreator, // Sesli kanal bağlantısı için adapter
+    });
+
+    console.log('Bot ses kanalına bağlandı!');
+  } catch (err) {
+    console.error("[HATA] Bot ses kanalına bağlanamadı!", err);
+  }
 
  // console.log("conf.chatMute türü:", typeof conf.chatMute);
  // console.log("conf.chatMute içeriği:", conf.chatMute); 
