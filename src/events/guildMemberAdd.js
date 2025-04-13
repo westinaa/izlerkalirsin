@@ -22,8 +22,8 @@ module.exports = async (member) => {
   if (guvenilirlik) {
   if(conf.fakeAccRole) member.roles.add(conf.fakeAccRole).catch();
   } else if(conf.unregRoles) member.roles.add(conf.unregRoles).catch();
-  if (member.user.username.includes(conf.tag)) { member.setNickname(`・Kayıtsız `).catch(); }
-  else { member.setNickname(`・Kayıtsız `).catch();}
+  /* if (member.user.username.includes(conf.tag)) { member.setNickname(`・Kayıtsız `).catch(); }
+  else { member.setNickname(`・Kayıtsız `).catch();} */
 
   
 
