@@ -118,53 +118,68 @@ message.reply({ embeds: [rol1] })
     /////    /////    /////    /////    /////    /////    /////    /////    /////    /////    /////    /////    /////    /////    /////    /////    /////    /////    /////    /////    /////    /////
 
 if (interaction.values[0] === "help2") {
+// Yardımcı fonksiyonlar
+function formatRoles(roller) {
+  return Array.isArray(roller) && roller.length > 0
+    ? roller.map(x => `<@&${x}>`).join(", ")
+    : "`YOK`";
+}
+
+function formatSingleRole(rol) {
+  return rol ? `<@&${rol}>` : "`YOK`";
+}
+
+function formatChannel(channelID) {
+  return channelID ? `<#${channelID}>` : "`YOK`";
+}
+
+function formatUsers(users) {
+  return Array.isArray(users) && users.length > 0
+    ? users.map(x => `<@${x}>`).join(", ")
+    : "`YOK`";
+}
+
 const veri1 = new EmbedBuilder()
-.setAuthor({ name: message.guild.name, iconURL: message.guild.iconURL({ dynamic: true, size: 2048 })})
-.setFooter({text : `${message.guild.name} | Kontrol Menüsü Sistemi`, iconURL : message.guild.iconURL({dynamic : true})})
-.setDescription(` 
+  .setAuthor({
+    name: message.guild.name,
+    iconURL: message.guild.iconURL({ dynamic: true, size: 2048 }),
+  })
+  .setFooter({
+    text: `${message.guild.name} | Kontrol Menüsü Sistemi`,
+    iconURL: message.guild.iconURL({ dynamic: true }),
+  })
+  .setDescription(`
 > **Kontrol Menüsü**
-Bot-Owner: (${allah.owners > 0 ? `${allah.owners.map(x => `<@${x}>`).join(",")}` : "\`YOK\`"})
-Link: (${ayar.serverUrl ? ayar.serverUrl : "\`YOK\`"})
-Tag: (\` ${ayar.tag ? ayar.tag : "YOK"} \`) / (\` ${ayar.ikinciTag ? ayar.ikinciTag : "YOK"} \`)
-Man Roles: (${ayar.erkekRolleri > 0 ? `${ayar.erkekRolleri.map(x => `<@&${x}>`).join(",")}` : "\`YOK\`"})
-Woman Roles: (${ayar.kizRolleri > 0 ? `${ayar.kizRolleri.map(x => `<@&${x}>`).join(",")}` : "\`YOK\`"})
-Unregister Role: (${ayar.unregRoles > 0 ? `${ayar.unregRoles.map(x => `<@&${x}>`).join(",")}` : "\`YOK\`"})
-Booster Role: (${ayar.boosterRolu ? `<@&${ayar.boosterRolu}>` : "\`YOK\`"})
-const teyitciRolleri = Array.isArray(ayar.teyitciRolleri)
-    ? ayar.teyitciRolleri
-    : ayar.teyitciRolleri
-        ? [ayar.teyitciRolleri]
-        : [];
+Bot-Owner: (${formatUsers(allah.owners)})
+Link: (${ayar.serverUrl || "YOK"})
+Tag: (\`${ayar.tag || "YOK"}\`) / (\`${ayar.ikinciTag || "YOK"}\`)
+Man Roles: (${formatRoles(ayar.erkekRolleri)})
+Woman Roles: (${formatRoles(ayar.kizRolleri)})
+Unregister Role: (${formatRoles(ayar.unregRoles)})
+Booster Role: (${formatSingleRole(ayar.boosterRolu)})
+Kayıt Yetkili Roles: (${formatRoles(ayar.teyitciRolleri)})
+Sahip Roles: (${formatRoles(ayar.sahipRolu)})
+Toplantı Katıldı Role: (${formatSingleRole(ayar.Katıldı)})
+Jail Role: (${formatRoles(ayar.jailRole)})
+Yasaklı Tag Role: (${formatRoles(ayar.yasaklıRole)})
+Chat Mute Role: (${formatRoles(ayar.chatMute)})
+Voice Mute Role: (${formatRoles(ayar.voiceMute)})
+Fake Account Role: (${formatRoles(ayar.fakeAccRole)})
+Ban Hammer Role: (${formatRoles(ayar.banHammer)})
+Jail Hammer Role: (${formatRoles(ayar.jailHammer)})
+CMute Hammer Role: (${formatRoles(ayar.cmuteHammer)})
+VMute Hammer Role: (${formatRoles(ayar.vmuteHammer)})
+Chat Channel: (${formatChannel(ayar.chatChannel)})
+Kayıt Sistemi Channel: (${formatChannel(ayar.kayıtwelcome)})
+Priv Welcome Channel: (${formatChannel(ayar.privwelcome)})
+Ban Log Channel: (${formatChannel(ayar.banLogChannel)})
+Jail Log Channel: (${formatChannel(ayar.jailLogChannel)})
+CMute Log Channel: (${formatChannel(ayar.cmuteLogChannel)})
+VMute Log Channel: (${formatChannel(ayar.vmuteLogChannel)})
+Ceza-Puan Log Channel: (${formatChannel(ayar.cezapuanlog)})
+`);
 
-const rolBilgisi = `Kayıt Yetkili Roles: (${teyitciRolleri.length > 0 
-    ? teyitciRolleri.map(x => `<@&${x}>`).join(", ") 
-    : "`YOK`"})`;
-
-console.log(rolBilgisi);
-
-Sahip Roles: (${ayar.sahipRolu > 0 ? `${ayar.sahipRolu.map(x => `<@&${x}>`).join(",")}` : "\`YOK\`"})
-Toplantı Katıldı Role: (${ayar.Katıldı ? `<@&${ayar.Katıldı}>` : "\`YOK\`"})
-Jail Role: (${ayar.jailRole > 0 ? `${ayar.jailRole.map(x => `<@&${x}>`).join(",")}` : "\`YOK\`"})
-Yasaklı Tag Role: (${ayar.yasaklıRole > 0 ? `${ayar.yasaklıRole.map(x => `<@&${x}>`).join(",")}` : "\`YOK\`"})
-Chat Mute Role: (${ayar.chatMute > 0 ? `${ayar.chatMute.map(x => `<@&${x}>`).join(",")}` : "\`YOK\`"})
-Voice Mute Role: (${ayar.voiceMute > 0 ? `${ayar.voiceMute.map(x => `<@&${x}>`).join(",")}` : "\`YOK\`"}))
-Fake Account Role: (${ayar.fakeAccRole > 0 ? `${ayar.fakeAccRole.map(x => `<@&${x}>`).join(",")}` : "\`YOK\`"})
-Ban Hammer Role: (${ayar.banHammer > 0 ? `${ayar.banHammer.map(x => `<@&${x}>`).join(",")}` : "\`YOK\`"})
-Jail Hammer Role: (${ayar.jailHammer > 0 ? `${ayar.jailHammer.map(x => `<@&${x}>`).join(",")}` : "\`YOK\`"})
-CMute Hammer Role: (${ayar.cmuteHammer > 0 ? `${ayar.cmuteHammer.map(x => `<@&${x}>`).join(",")}` : "\`YOK\`"})
-VMute Hammer Role: (${ayar.vmuteHammer > 0 ? `${ayar.vmuteHammer.map(x => `<@&${x}>`).join(",")}` : "\`YOK\`"})
-Chat Channel: (${ayar.chatChannel ? `<#${ayar.chatChannel}>` : "\`YOK\`"})
-Kayıt Sistemi Channel: (${ayar.kayıtwelcome ? `<#${ayar.kayıtwelcome}>` : "\`YOK\`"})
-Priv Welcome Channel: (${ayar.privwelcome ? `<#${ayar.privwelcome}>` : "\`YOK\`"})
-Ban Log Channel: (${ayar.banLogChannel ? `<#${ayar.banLogChannel}>` : "\`YOK\`"})
-Jail Log Channel: (${ayar.jailLogChannel ? `<#${ayar.jailLogChannel}>` : "\`YOK\`"})
-CMute Log Channel: (${ayar.cmuteLogChannel ? `<#${ayar.cmuteLogChannel}>` : "\`YOK\`"})
-VMute Log Channel: (${ayar.vmuteLogChannel ? `<#${ayar.vmuteLogChannel}>` : "\`YOK\`"})
-Ceza-Puan Log Channel: (${ayar.cezapuanlog ? `<#${ayar.cezapuanlog}>` : "\`YOK\`"})
-  `)
-  
-  message.reply({ embeds: [veri1] })
-  }
+message.reply({ embeds: [veri1] });
 
 
 
