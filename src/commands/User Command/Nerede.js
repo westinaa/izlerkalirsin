@@ -78,7 +78,7 @@ const {
   
         // Yönetici değilse onay sistemi başlasın
         const embed = new EmbedBuilder()
-          .setColor("#2f3136")
+          .setColor("#ffffff")
           .setAuthor({ name: member.user.username, iconURL: member.displayAvatarURL({ dynamic: true }) })
           .setDescription(`${member}, ${authorMember} senin yanına gelmek istiyor.`)
           .setFooter({ text: "30 saniye içinde onay vermezsen işlem iptal edilir." });
