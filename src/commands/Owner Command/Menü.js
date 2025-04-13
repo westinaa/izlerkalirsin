@@ -52,8 +52,8 @@ module.exports = {
             message.channel.send({ content: `<:flannzryhaz:1346909691606728715> **${allah.GuildName}**'da sizleri rahatsız etmemek için \`@everyone\` veya \`@here\` atmayacağız. ${cekilis}
 Sadece isteğiniz doğrultusunda aşağıda bulunan menüden rol seçerseniz o konular için bildirim alırsınız.
 
-\` ❯ \` Düzenlenecek etkinlikler, konserler, turnuvalar ve daha fazlasından haberdar olmak için **<@&1352950209201836052>** rolünü alabilirsiniz.
-\` ❯ \` Çekilişlerden ve ürünlerden (${boostluNitro}, ${netflix}, ${spotify}, ${exxen}, ${youtube}) haberdar olmak için **<@&1352950208006193203>** rolünü alabilirsiniz. `,
+\` ❯ \` Düzenlenecek etkinlikler, konserler, turnuvalar ve daha fazlasından haberdar olmak için **<@&1359992422658212033>** rolünü alabilirsiniz.
+\` ❯ \` Çekilişlerden ve ürünlerden (${boostluNitro}, ${netflix}, ${spotify}, ${exxen}, ${youtube}) haberdar olmak için **<@&1359992421391536319>** rolünü alabilirsiniz. `,
                     "components": [{
                         "type": 1, "components": [{
                             "type": 3, "custom_id": "etkinliks", "options": [
