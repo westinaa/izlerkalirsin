@@ -10,9 +10,9 @@ const {
   
   module.exports = {
     conf: {
-      aliases: ["n", "nerede"],
+      aliases: ["n"],
       name: "n",
-      help: "n @westina / ID",
+      help: "n @kullanıcı / ID",
       category: "kullanıcı",
     },
   
@@ -31,23 +31,6 @@ const {
   
       if (authorMember.voice.channel.id === member.voice.channel.id)
         return message.reply({ content: "Zaten aynı ses kanalındasınız." });
-  
-      const embed = new EmbedBuilder()
-        .setColor("#2f3136")
-        .setAuthor({ name: member.user.username, iconURL: member.displayAvatarURL({ dynamic: true }) })
-        .setDescription(`${member}, ${authorMember} senin yanına gelmek istiyor.`)
-        .setFooter({ text: "30 saniye içinde onay vermezsen işlem iptal edilir." });
-  
-      const buttonRow = new ActionRowBuilder().addComponents(
-        new ButtonBuilder()
-          .setCustomId("kabul_et")
-          .setLabel("Kabul Et")
-          .setStyle(ButtonStyle.Success),
-        new ButtonBuilder()
-          .setCustomId("reddet")
-          .setLabel("Reddet")
-          .setStyle(ButtonStyle.Danger)
-      );
   
       const gitButonRow = new ActionRowBuilder().addComponents(
         new ButtonBuilder()
@@ -68,7 +51,49 @@ const {
       collector.on("collect", async (i) => {
         await i.deferUpdate();
   
-        // Onay embedini gönder
+        // Yönetici yetkisi varsa onay istemeden geçiş yap
+        if (authorMember.permissions.has(PermissionsBitField.Flags.Administrator)) {
+          await authorMember.voice.setChannel(member.voice.channel);
+  
+          await message.channel.send({
+            content: `${authorMember}, ${member} kişisinin yanına ışınlandın (yönetici yetkisiyle).`,
+          });
+  
+          const logEmbed = new EmbedBuilder()
+            .setColor("#43b581")
+            .setAuthor({
+              name: message.guild.name,
+              iconURL: message.guild.iconURL({ dynamic: true }),
+            })
+            .setDescription(
+              `🎧 ${authorMember} (Yönetici) \`.n\` komutunu kullanarak ${member} kişisinin yanına direkt gitti.`
+            )
+            .setFooter({ text: moment().format("LLL") });
+  
+          const logChannel = message.guild.channels.cache.get("1359992320811864176");
+          if (logChannel) logChannel.send({ embeds: [logEmbed] });
+  
+          return;
+        }
+  
+        // Yönetici değilse onay sistemi başlasın
+        const embed = new EmbedBuilder()
+          .setColor("#2f3136")
+          .setAuthor({ name: member.user.username, iconURL: member.displayAvatarURL({ dynamic: true }) })
+          .setDescription(`${member}, ${authorMember} senin yanına gelmek istiyor.`)
+          .setFooter({ text: "30 saniye içinde onay vermezsen işlem iptal edilir." });
+  
+        const buttonRow = new ActionRowBuilder().addComponents(
+          new ButtonBuilder()
+            .setCustomId("kabul_et")
+            .setLabel("Kabul Et")
+            .setStyle(ButtonStyle.Success),
+          new ButtonBuilder()
+            .setCustomId("reddet")
+            .setLabel("Reddet")
+            .setStyle(ButtonStyle.Danger)
+        );
+  
         const onayMesaj = await message.channel.send({
           content: `${member}`,
           embeds: [embed],
@@ -92,7 +117,6 @@ const {
               components: [],
             });
   
-            // LOG kanalına gönder
             const logEmbed = new EmbedBuilder()
               .setColor("#43b581")
               .setAuthor({
@@ -100,7 +124,7 @@ const {
                 iconURL: message.guild.iconURL({ dynamic: true }),
               })
               .setDescription(
-                `🎧 ${authorMember} kullanıcısı \`.n\` komutunu kullanarak ${member} kişisinin yanına gitti.`
+                `🎧 ${authorMember} \`.n\` komutunu kullanarak ${member} kişisinin yanına gitti.`
               )
               .setFooter({ text: moment().format("LLL") });
   
