@@ -21,7 +21,7 @@ let row = new ActionRowBuilder().addComponents(
     buton1
 )
 
-chatchannel.send({content: `**<@${member.id}> ARAMIZA KATILDI, SELAM VERMEYİ UNUTMAYIN!**`, components: [row]}); //.then((e) => setTimeout(() => { e.delete(); }, 5000));
+/*chatchannel.send({content: `**<@${member.id}> ARAMIZA KATILDI, SELAM VERMEYİ UNUTMAYIN!**`, components: [row]}); //.then((e) => setTimeout(() => { e.delete(); }, 5000));
 const usedButtons = new Set();
 const collector = chatchannel.createMessageComponentCollector({})
 collector.on('collect', async (interaction) => {
@@ -36,5 +36,5 @@ collector.on('collect', async (interaction) => {
       }, 5000);
       }
       }
-  })
-})
+  })*/
+});
