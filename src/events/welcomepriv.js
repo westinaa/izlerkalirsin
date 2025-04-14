@@ -11,7 +11,7 @@ module.exports = {
 client.on('guildMemberAdd', async (member) => {
 
 let uye = client.users.cache.get(member.id)
-let chatchannel = client.channels.cache.get(conf.privwelcome)
+let chatchannel = client.channels.cache.get("1359992316906963086")
 let buton1 = new ButtonBuilder()
 .setCustomId(`selam`)
 .setLabel(`Selam Ver!`)
