@@ -3,7 +3,7 @@
 module.exports = {
     GuildID: "1357115287044100216",
     GuildName: "izler kalır @izlerkalirsin",
-    owners: ["474006896408264712"],
+    owners: ["474006896408264712", "812204329535668234"],
     BotDurum: ["@izlerkalirsin"],
     BotSesKanal: "1357154558870163647",
     AltBaşlık: "1357152711404945648",
