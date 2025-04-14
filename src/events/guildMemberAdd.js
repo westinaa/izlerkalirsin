@@ -45,7 +45,7 @@ module.exports = async (member) => {
 
 <a:botonay:1361460346665046157> Kullanıcıya <@&${otoRolID}> rolünü başarıyla verdim.
 
-<:kisi:1361438602269032770> **Sunucumuz \`${member.guild.memberCount}\` kişi oldu.**
+<:kisi:1361438602269032770> **Sunucu \`${member.guild.memberCount}\` kişi oldu.**
 
 <:mavi_cizgi:1361322789167960194><:mavi_cizgi:1361322789167960194><:mavi_cizgi:1361322789167960194><:mavi_cizgi:1361322789167960194><:mavi_cizgi:1361322789167960194><:mavi_cizgi:1361322789167960194><:mavi_cizgi:1361322789167960194><:mavi_cizgi:1361322789167960194><:mavi_cizgi:1361322789167960194><:mavi_cizgi:1361322789167960194>
     `);
