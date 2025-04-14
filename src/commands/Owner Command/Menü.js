@@ -384,7 +384,7 @@ Düzenlenecek etkinlikler, konserler, turnuvalar ve daha fazlasından haberdar o
             let role = color.get(interaction.values[0])
             let renkroller = [siyah, beyaz, kırmızı, mavi, turuncu, sarı, mor, yeşil]
             if (!member.roles.cache.has(conf.ekipRolu) && !member.roles.cache.has(conf.boosterRolu) && !member.permissions.has(PermissionsBitField.Flags.Administrator)) {
-                interaction.reply({ content: "**Renk seçeneğini yalnızca <@&1345799196619440311> rolüne sahipsen kullanabilirsin.**\nBoost basarsan otomatik olarak <@&1345799196619440311> rolüne sahip olabilirsin. <a:boostluNitro:1352949764588830844>" , ephemeral: true })
+                interaction.reply({ content: "Renk rollerinden faydalanmak için **boost basmanız veya durumunuza `/izlerkalirsin` almanız gerekiyor**. <:zengin:1361014418414112949>\n<:utlarrowscratch7:1345857197871206400> Ayrıca boost basarsanız otomatik <@&1357116203914760213> rolüne, durumunuza `/izlerkalirsin` alırsanız <@&1357161320679477459> rolüne sahip oluyorsunuz." , ephemeral: true })
             } else {
               if (interaction.values[0] === "rolsil") {
                 await member.roles.remove(renkroller)
