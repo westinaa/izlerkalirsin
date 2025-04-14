@@ -12,9 +12,6 @@ const { green, red } = require("../../settings/configs/emojis.json")
 const emoji = require("../../settings/configs/emojis.json")
 const forceBans = require("../../settings/schemas/forceBans");
 const isimler = require("../../settings/schemas/names");
-  // OTOROL SISTEMI
-  const otoRolID = "1357152624155037917"; // OTOMATİK VERİLECEK ROL ID
-  const otoRolLogKanalID = "1359992316906963086"; // MESAJ ATILACAK KANALIN ID'Sİ
 
 module.exports = async (member) => {
 
@@ -26,7 +23,7 @@ module.exports = async (member) => {
   if(conf.fakeAccRole) member.roles.add(conf.fakeAccRole).catch();
 } else if (conf.unregRoles) {
   member.roles.add(conf.unregRoles).then(() => {
-    const logChannel = member.guild.channels.cache.get(otoRolLogKanalID);
+    const logChannel = member.guild.channels.cache.get("1359992316906963086");
     if (logChannel) {
       const roller = Array.isArray(conf.unregRoles) ? conf.unregRoles.map(id => `<@&${id}>`).join(", ") : `<@&${conf.unregRoles}>`;
       logChannel.send(`
@@ -70,17 +67,15 @@ module.exports = async (member) => {
 
   const res = await bannedTag.findOne({ guildID: allah.GuildID });
   if (!res) return
-  
-kayitchannel.wsend({ content:`
+};  
+/* kayitchannel.wsend({ content:`
 > \`${member.guild.name}\` Sunucumuza Hoş Geldin ${member} Seninle beraber sunucumuz (${üyesayısı}) Kişi Oldu! 🎉🎉
 > Hesabın \`${memberGün} ${memberAylar} ${memberTarih}\` tarihinde (<t:${Math.floor(member.user.createdTimestamp / 1000)}:R>) oluşturulmuş. ${guvenilirlik ? `${red} Şüpheli!` : `${green} Güvenli!` } 
 
 Sunucumuza kayıt olduğunda kurallar kanalına göz atmayı unutmayınız. Kayıt olduktan sonra kuralları okuduğunuzu <@&${conf.teyitciRolleri}>
 
-kabul edeceğiz ve içeride yapılacak cezalandırma işlemlerini bunu göz önünde bulundurarak yapacağız`});
+kabul edeceğiz ve içeride yapılacak cezalandırma işlemlerini bunu göz önünde bulundurarak yapacağız`});*/
 
-
-};  
 
 module.exports.conf = {
   name: "guildMemberAdd",
