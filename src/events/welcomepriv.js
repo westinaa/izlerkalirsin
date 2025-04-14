@@ -27,7 +27,7 @@ const collector = chatchannel.createMessageComponentCollector({})
 collector.on('collect', async (interaction) => {
     if(interaction.customId === "selam"){
       if(usedButtons.has(interaction.user.id)){
-        interaction.reply({content: `Sanırım selam vermeyi 5 saniye önce kullandın tekrar dene.`, ephemeral: true}).then((e) => setTimeout(() => { e.delete(); }, 5000));
+        interaction.reply({content: `Sanırım selam vermeyi 5 saniye önce kullandın tekrar dene.`, ephemeral: true});//.then((e) => setTimeout(() => { e.delete(); }, 5000));
       } else {
         interaction.reply(`**<@${uye.id}>, <@${interaction.user.id}> Sana Selam Verdi!**`).then((e) => setTimeout(() => { e.delete(); }, 5000));
         usedButtons.add(interaction.user.id);
