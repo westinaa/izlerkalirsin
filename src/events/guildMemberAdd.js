@@ -39,11 +39,15 @@ module.exports = async (member) => {
   const logChannel = member.guild.channels.cache.get(otoRolLogKanalID);
   if (logChannel) {
     logChannel.send(`
-<a:cekilis:1359992122840711282> ${member} **aramıza katıldı!**
+<:mavi_cizgi:1361322789167960194><:mavi_cizgi:1361322789167960194><:mavi_cizgi:1361322789167960194><:mavi_cizgi:1361322789167960194><:mavi_cizgi:1361322789167960194><:mavi_cizgi:1361322789167960194>
+
+<:emoji_10:1358335186776887447> ${member} **aramıza katıldı!**
 
 <a:botonay:1361460346665046157> Kullanıcıya <@&${otoRolID}> rolünü başarıyla verdim.
 
 <:kisi:1361438602269032770> **Sunucumuz \`${member.guild.memberCount}\` kişi oldu.**
+
+<:mavi_cizgi:1361322789167960194><:mavi_cizgi:1361322789167960194><:mavi_cizgi:1361322789167960194><:mavi_cizgi:1361322789167960194><:mavi_cizgi:1361322789167960194><:mavi_cizgi:1361322789167960194>
     `);
   }
 
