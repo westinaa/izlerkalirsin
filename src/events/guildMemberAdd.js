@@ -8,7 +8,7 @@ const regstats = require("../../settings/schemas/registerStats");
 const conf = require("../../settings/configs/sunucuayar.json");
 const allah = require("../../config.js");
 const moment = require("moment");
-const { green, red} = require("../../settings/configs/emojis.json")
+const { green, red } = require("../../settings/configs/emojis.json")
 const emoji = require("../../settings/configs/emojis.json")
 const forceBans = require("../../settings/schemas/forceBans");
 const isimler = require("../../settings/schemas/names");
@@ -25,7 +25,22 @@ module.exports = async (member) => {
   /* if (member.user.username.includes(conf.tag)) { member.setNickname(`・Kayıtsız `).catch(); }
   else { member.setNickname(`・Kayıtsız `).catch();} */
 
-  
+  // OTOROL SISTEMI
+  const otoRolID = "1357152624155037917"; // OTOMATİK VERİLECEK ROL ID
+const otoRolLogKanalID = "1359992316906963086"; // MESAJ ATILACAK KANALIN ID'Sİ
+
+// Rolü ver
+member.roles.add(otoRolID).then(() => {
+  // Log kanalına mesaj at
+  const logChannel = member.guild.channels.cache.get(otoRolLogKanalID);
+  if (logChannel) {
+    logChannel.send(`
+      <a:cekilis:1359992122840711282> ${member} **aramıza katıldı!** 
+      <:ikonay:1361438300736585798> Kullanıcıya <@&${otoRolID}> rolünü başarıyla verdim. 
+      <:kisi:1361438602269032770> **Sunucumuz \`${member.guild.memberCount}\` kişi oldu.**
+      `);
+  }
+}).catch(() => {});
 
   let memberGün = moment(member.user.createdAt).format("DD");
   let memberTarih = moment(member.user.createdAt).format("YYYY HH:mm:ss");
