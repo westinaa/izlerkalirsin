@@ -40,7 +40,9 @@ module.exports = async (member) => {
   if (logChannel) {
     logChannel.send(`
 <a:cekilis:1359992122840711282> ${member} **aramıza katıldı!**
-<:ikonay:1361438300736585798> Kullanıcıya <@&${otoRolID}> rolünü başarıyla verdim.
+
+<a:botonay:1361460346665046157> Kullanıcıya <@&${otoRolID}> rolünü başarıyla verdim.
+
 <:kisi:1361438602269032770> **Sunucumuz \`${member.guild.memberCount}\` kişi oldu.**
     `);
   }
