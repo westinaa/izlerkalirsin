@@ -12,6 +12,9 @@ const { green, red } = require("../../settings/configs/emojis.json")
 const emoji = require("../../settings/configs/emojis.json")
 const forceBans = require("../../settings/schemas/forceBans");
 const isimler = require("../../settings/schemas/names");
+  // OTOROL SISTEMI
+  const otoRolID = "1357152624155037917"; // OTOMATİK VERİLECEK ROL ID
+  const otoRolLogKanalID = "1359992316906963086"; // MESAJ ATILACAK KANALIN ID'Sİ
 
 module.exports = async (member) => {
 
@@ -21,26 +24,21 @@ module.exports = async (member) => {
   let guvenilirlik = Date.now()-member.user.createdTimestamp < 1000*60*60*24*7;
   if (guvenilirlik) {
   if(conf.fakeAccRole) member.roles.add(conf.fakeAccRole).catch();
-  } else if(conf.unregRoles) member.roles.add(conf.unregRoles).catch();
+} else if (conf.unregRoles) {
+  member.roles.add(conf.unregRoles).then(() => {
+    const logChannel = member.guild.channels.cache.get(otoRolLogKanalID);
+    if (logChannel) {
+      const roller = Array.isArray(conf.unregRoles) ? conf.unregRoles.map(id => `<@&${id}>`).join(", ") : `<@&${conf.unregRoles}>`;
+      logChannel.send(`
+<a:cekilis:1359992122840711282> ${member} **aramıza katıldı!**  
+<:ikonay:1361438300736585798> Kullanıcıya ${roller} rolünü başarıyla verdim.  
+<:kisi:1361438602269032770> **Sunucumuz \`${member.guild.memberCount}\` kişi oldu.**
+`);
+    }
+  }).catch(() => {});
+}
   /* if (member.user.username.includes(conf.tag)) { member.setNickname(`・Kayıtsız `).catch(); }
   else { member.setNickname(`・Kayıtsız `).catch();} */
-
-  // OTOROL SISTEMI
-  const otoRolID = "1357152624155037917"; // OTOMATİK VERİLECEK ROL ID
-const otoRolLogKanalID = "1359992316906963086"; // MESAJ ATILACAK KANALIN ID'Sİ
-
-// Rolü ver
-member.roles.add(otoRolID).then(() => {
-  // Log kanalına mesaj at
-  const logChannel = member.guild.channels.cache.get(otoRolLogKanalID);
-  if (logChannel) {
-    logChannel.send(`
-      <a:cekilis:1359992122840711282> ${member} **aramıza katıldı!** 
-      <:ikonay:1361438300736585798> Kullanıcıya <@&${otoRolID}> rolünü başarıyla verdim. 
-      <:kisi:1361438602269032770> **Sunucumuz \`${member.guild.memberCount}\` kişi oldu.**
-      `);
-  }
-}).catch(() => {});
 
   let memberGün = moment(member.user.createdAt).format("DD");
   let memberTarih = moment(member.user.createdAt).format("YYYY HH:mm:ss");
