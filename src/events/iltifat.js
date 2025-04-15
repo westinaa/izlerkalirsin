@@ -138,7 +138,7 @@ moment.locale("tr");
     module.exports = async (message) => {
         if (message.channel.id === conf.chatChannel && !message.author.bot) {
         iltifatSayi++;
-        if (iltifatSayi >= 20) {
+        if (iltifatSayi >= 40) {
           iltifatSayi = 0;
           message.reply({ content: iltifatlar.random()});
         };
