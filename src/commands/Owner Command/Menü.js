@@ -225,14 +225,14 @@ Düzenlenecek etkinlikler, konserler, turnuvalar ve daha fazlasından haberdar o
                     "components": [{
                         "type": 1, "components": [{
                             "type": 3, "custom_id": "renk", "options": [
-                                { "label": "Siyah", "description": "Siyah rengine sahip olmak için tıkla!", "value": "siyah", "emoji": { "name": "🍫" }, },
-                                { "label": "Beyaz", "description": "Beyaz rengine sahip olmak için tıkla!", "value": "beyaz", "emoji": { "name": "🥥" }, },
-                                { "label": "Kırmızı", "description": "Kırmızı rengine sahip olmak için tıkla!", "value": "kırmızı", "emoji": { "name": "🍒" }, },
-                                { "label": "Mavi", "description": "Mavi rengine sahip olmak için tıkla!", "value": "mavi", "emoji": { "name": "💦" }, },
-                                { "label": "Turuncu", "description": "Turuncu rengine sahip olmak için tıkla!", "value": "turuncu", "emoji": { "name": "🥕" }, },
-                                { "label": "Sarı", "description": "Sarı rengine sahip olmak için tıkla!", "value": "sarı", "emoji": { "name": "🍋" }, },
-                                { "label": "Mor", "description": "Mor rengine sahip olmak için tıkla!", "value": "mor", "emoji": { "name": "🍇" }, },
-                                { "label": "Yeşil", "description": "Yeşil rengine sahip olmak için tıkla!", "value": "yeşil", "emoji": { "name": "🥝" }, },
+                                { "label": "Siyah", "description": "Siyah rengine sahip olmak için tıkla!", "value": "siyah", "emoji": { "id": "1361841498945224756" }, },
+                                { "label": "Beyaz", "description": "Beyaz rengine sahip olmak için tıkla!", "value": "beyaz", "emoji": { "id": "1361841496227057736" }, },
+                                { "label": "Kırmızı", "description": "Kırmızı rengine sahip olmak için tıkla!", "value": "kırmızı", "emoji": { "id": "1361841501264412846" }, },
+                                { "label": "Mavi", "description": "Mavi rengine sahip olmak için tıkla!", "value": "mavi", "emoji": { "id": "1361840112220246026" }, },
+                                { "label": "Turuncu", "description": "Turuncu rengine sahip olmak için tıkla!", "value": "turuncu", "emoji": { "id": "1361840110487998636" }, },
+                                { "label": "Sarı", "description": "Sarı rengine sahip olmak için tıkla!", "value": "sarı", "emoji": { "id": "1361840114736828657" }, },
+                                { "label": "Mor", "description": "Mor rengine sahip olmak için tıkla!", "value": "mor", "emoji": { "id": "1361843257138610306" }, },
+                                { "label": "Yeşil", "description": "Yeşil rengine sahip olmak için tıkla!", "value": "yeşil", "emoji": { "id": "1361840113457299616" }, },
                                 { "label": "Rol Temizle", "value": "rolsil", "emoji": { "name": "🗑️" }, }
                             ], "placeholder": "Renk Rolleri", "min_values": 1, "max_values": 1
                         }],

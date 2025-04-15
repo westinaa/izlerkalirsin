@@ -10,14 +10,14 @@
     "alone": "Sevgilim Yok"
   },
   "Renkler": {
-    "siyah": "🍫",
-    "beyaz": "🥥",
-    "kırmızı": "🍒",
-    "mavi": "💦",
-    "turuncu": "🥕",
-    "sarı": "🍋",
-    "mor": "🍇",
-    "yeşil": "🥝"
+    "siyah": "siyah",
+    "beyaz": "beyaz",
+    "kırmızı": "kırmızı",
+    "mavi": "mavi",
+    "turuncu": "turuncu",
+    "sarı": "sarı",
+    "mor": "mor",
+    "yeşil": "yeşil"
   },
   "Oyunlar": {
     "csgo": "CS:GO",
