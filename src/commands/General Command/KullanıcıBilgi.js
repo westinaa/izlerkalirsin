@@ -15,12 +15,10 @@ module.exports = {
     const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
     const user = member.user;
 
-    const createdAtUnix = Math.floor(user.createdTimestamp / 1000);
-    const joinedAtUnix = Math.floor(member.joinedTimestamp / 1000);
+    const createdAt = `<t:${Math.floor(user.createdTimestamp / 1000)}:F> (<t:${Math.floor(user.createdTimestamp / 1000)}:R>)`;
+    const joinedAt = `<t:${Math.floor(member.joinedTimestamp / 1000)}:F> (<t:${Math.floor(member.joinedTimestamp / 1000)}:R>)`;
 
-    const createdAt = `${moment(user.createdAt).format("LLL")} (<t:${createdAtUnix}:R>)`;
-    const joinedAt = `${moment(member.joinedAt).format("LLL")} (<t:${joinedAtUnix}:R>)`;
-
+    // Cihaz isimlerini Türkçeleştiren kısım
     const devices = member.presence?.clientStatus
       ? Object.keys(member.presence.clientStatus)
           .map(dev => {
@@ -36,7 +34,7 @@ module.exports = {
     const bannerURL = fetchedUser.bannerURL({ dynamic: true, size: 1024 });
 
     const isBooster = member.premiumSince ? true : false;
-    const tagRoleID = "1357161320679477459";
+    const tagRoleID = "1357161320679477459"; // <-- TAG ROLÜ
     const isTag = member.roles.cache.has(tagRoleID) ? "Taglı" : "Tagsız";
     const isNitro = fetchedUser.banner ? "Evet" : "Hayır";
 
@@ -84,13 +82,17 @@ module.exports = {
           name: "<:nitro:1362171568825831595> Discord Nitro",
           value: `${isNitro}`,
           inline: false,
-        },
-        {
-          name: "<:mavi_guncelleme:1361322791290404987> Nitrolu ise Banner Aşağıda",
-          value: "\u200B",
-          inline: false,
         }
       );
+
+    // Eğer Nitro varsa ve banner varsa, o zaman şu satır eklenir
+    if (isNitro === "Evet" && bannerURL) {
+      embed.addFields({
+        name: "\u200B", // boş satır
+        value: "<:mavi_guncelleme:1361322791290404987> Banner",
+        inline: false,
+      });
+    }
 
     if (fetchedUser.bio) {
       embed.addFields({
