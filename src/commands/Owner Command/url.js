@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require("discord.js");
+const axios = require("axios");
 const conf = require("../../../settings/configs/sunucuayar.json");
 
 module.exports = {
@@ -11,20 +11,25 @@ module.exports = {
 
   run: async (client, message, args) => {
     try {
-      let özelURL = conf.serverUrl; // Özel davet linki (sunucuayar.json içinde tanımlı olmalı)
-      
-      // Eğer özelURL tam link olarak tanımlıysa, sadece kod kısmını al
-      if (özelURL.startsWith("https://discord.gg/")) {
-        özelURL = özelURL.split("/").pop();
+      const guildID = "1357115287044100216"; // sunucuayar.json dosyasında tanımlı olmalı
+      if (!guildID) return message.reply("Sunucu ID bilgisi bulunamadı!");
+
+      const response = await axios.get(`https://discord.com/api/v10/guilds/${guildID}/vanity-url`, {
+        headers: {
+          Authorization: `Bot ${client.token}`
+        }
+      }).catch(() => null);
+
+      if (!response || !response.data) {
+        return message.reply("Vanity URL bilgisi alınamadı! Botun yeterli yetkisi olmayabilir.");
       }
-      
-      // Daveti doğrudan API'den çekmeyi deniyoruz
-      const özelDavet = await client.fetchInvite(özelURL).catch(() => null);
-      if (!özelDavet) return message.reply("Özel davet bağlantısı bulunamadı veya geçersiz!");
-      
-      message.channel.send(`discord.gg/${özelURL}\n\`Kullanım:\` **${özelDavet.uses || 0}**`);
+
+      const { code, uses } = response.data;
+
+      message.channel.send(`discord.gg/${code}\n\`Kullanım:\` **${uses}**`);
+
     } catch (error) {
-      console.error("Davetleri çekerken hata oluştu:", error);
+      console.error("Vanity URL alınırken hata oluştu:", error);
       message.reply("Bir hata oluştu, lütfen tekrar deneyin.");
     }
   },
