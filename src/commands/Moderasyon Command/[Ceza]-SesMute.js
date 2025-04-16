@@ -161,6 +161,12 @@ module.exports = {
       const penal = await client.penalize(message.guild.id, member.user.id, "VOICE-MUTE", true, message.author.id, reason, true, Date.now() + duration);
       message.react(green)
       if(msg) msg.delete();
+setTimeout(() => {
+  member.roles.remove(conf.voiceMute).catch(() => {});
+  if (member.voice.channelId && member.voice.serverMute) {
+    member.voice.setMute(false).catch(() => {});
+  }
+}, duration);
       await message.channel.send({ content:`${green} ${member.toString()} üyesi, ${message.author} tarafından, \`${reason}\` nedeniyle **sesli kanallarda** susturuldu! \`(Ceza ID: #${penal.id})\``}).then((e) => setTimeout(() => { e.delete(); }, 50000));
        message.react(green)
       if (allah.Main.dmMessages) member.send({ content:`**${message.guild.name}** sunucusunda, **${message.author.tag}** tarafından, **${reason}** sebebiyle, <t:${Math.floor((Date.now() + duration) / 1000)}:R>'ya kadar **sesli kanallarda** susturuldunuz.`}).catch(() => {});
@@ -216,6 +222,12 @@ module.exports = {
     const penal = await client.penalize(message.guild.id, member.user.id, "VOICE-MUTE", true, message.author.id, reason, true, Date.now() + duration);
     message.react(green)
     if(msg) msg.delete();
+setTimeout(() => {
+  member.roles.remove(conf.voiceMute).catch(() => {});
+  if (member.voice.channelId && member.voice.serverMute) {
+    member.voice.setMute(false).catch(() => {});
+  }
+}, duration);
     await message.channel.send({ content:`${green} ${member.toString()} üyesi, ${message.author} tarafından, \`${reason}\` nedeniyle **sesli kanallarda** susturuldu! \`(Ceza ID: #${penal.id})\``}).then((e) => setTimeout(() => { e.delete(); }, 50000));
      message.react(green)
     if (allah.Main.dmMessages) member.send({ content:`**${message.guild.name}** sunucusunda, **${message.author.tag}** tarafından, **${reason}** sebebiyle, <t:${Math.floor((Date.now() + duration) / 1000)}:R>'ya kadar **sesli kanallarda** susturuldunuz.`}).catch(() => {});
@@ -260,6 +272,12 @@ module.exports = {
     const penal = await client.penalize(message.guild.id, member.user.id, "VOICE-MUTE", true, message.author.id, reason, true, Date.now() + duration);
     message.react(green)
     if(msg) msg.delete();
+setTimeout(() => {
+  member.roles.remove(conf.voiceMute).catch(() => {});
+  if (member.voice.channelId && member.voice.serverMute) {
+    member.voice.setMute(false).catch(() => {});
+  }
+}, duration);
     await message.channel.send({ content:`${green} ${member.toString()} üyesi, ${message.author} tarafından, \`${reason}\` nedeniyle **sesli kanallarda** susturuldu! \`(Ceza ID: #${penal.id})\``}).then((e) => setTimeout(() => { e.delete(); }, 50000));
      message.react(green)
     if (allah.Main.dmMessages) member.send({ content:`**${message.guild.name}** sunucusunda, **${message.author.tag}** tarafından, **${reason}** sebebiyle, <t:${Math.floor((Date.now() + duration) / 1000)}:R>'ya kadar **sesli kanallarda** susturuldunuz.`}).catch(() => {});
@@ -304,6 +322,12 @@ module.exports = {
     const penal = await client.penalize(message.guild.id, member.user.id, "VOICE-MUTE", true, message.author.id, reason, true, Date.now() + duration);
     message.react(green)
     if(msg) msg.delete();
+setTimeout(() => {
+  member.roles.remove(conf.voiceMute).catch(() => {});
+  if (member.voice.channelId && member.voice.serverMute) {
+    member.voice.setMute(false).catch(() => {});
+  }
+}, duration);
     await message.channel.send({ content:`${green} ${member.toString()} üyesi, ${message.author} tarafından, \`${reason}\` nedeniyle **sesli kanallarda** susturuldu! \`(Ceza ID: #${penal.id})\``}).then((e) => setTimeout(() => { e.delete(); }, 50000));
      message.react(green)
     if (allah.Main.dmMessages) member.send({ content:`**${message.guild.name}** sunucusunda, **${message.author.tag}** tarafından, **${reason}** sebebiyle, <t:${Math.floor((Date.now() + duration) / 1000)}:R>'ya kadar **sesli kanallarda** susturuldunuz.`}).catch(() => {});
@@ -348,6 +372,12 @@ module.exports = {
     const penal = await client.penalize(message.guild.id, member.user.id, "VOICE-MUTE", true, message.author.id, reason, true, Date.now() + duration);
     message.react(green)
     if(msg) msg.delete();
+setTimeout(() => {
+  member.roles.remove(conf.voiceMute).catch(() => {});
+  if (member.voice.channelId && member.voice.serverMute) {
+    member.voice.setMute(false).catch(() => {});
+  }
+}, duration);
     await message.channel.send({ content:`${green} ${member.toString()} üyesi, ${message.author} tarafından, \`${reason}\` nedeniyle **sesli kanallarda** susturuldu! \`(Ceza ID: #${penal.id})\``}).then((e) => setTimeout(() => { e.delete(); }, 50000));
      message.react(green)
     if (allah.Main.dmMessages) member.send({ content:`**${message.guild.name}** sunucusunda, **${message.author.tag}** tarafından, **${reason}** sebebiyle, <t:${Math.floor((Date.now() + duration) / 1000)}:R>'ya kadar **sesli kanallarda** susturuldunuz.`}).catch(() => {});
@@ -392,6 +422,12 @@ module.exports = {
     const penal = await client.penalize(message.guild.id, member.user.id, "VOICE-MUTE", true, message.author.id, reason, true, Date.now() + duration);
     message.react(green)
     if(msg) msg.delete();
+setTimeout(() => {
+  member.roles.remove(conf.voiceMute).catch(() => {});
+  if (member.voice.channelId && member.voice.serverMute) {
+    member.voice.setMute(false).catch(() => {});
+  }
+}, duration);
     await message.channel.send({ content:`${green} ${member.toString()} üyesi, ${message.author} tarafından, \`${reason}\` nedeniyle **sesli kanallarda** susturuldu! \`(Ceza ID: #${penal.id})\``}).then((e) => setTimeout(() => { e.delete(); }, 50000));
      message.react(green)
     if (allah.Main.dmMessages) member.send({ content:`**${message.guild.name}** sunucusunda, **${message.author.tag}** tarafından, **${reason}** sebebiyle, <t:${Math.floor((Date.now() + duration) / 1000)}:R>'ya kadar **sesli kanallarda** susturuldunuz.`}).catch(() => {});
@@ -436,6 +472,12 @@ module.exports = {
     const penal = await client.penalize(message.guild.id, member.user.id, "VOICE-MUTE", true, message.author.id, reason, true, Date.now() + duration);
     message.react(green)
     if(msg) msg.delete();
+setTimeout(() => {
+  member.roles.remove(conf.voiceMute).catch(() => {});
+  if (member.voice.channelId && member.voice.serverMute) {
+    member.voice.setMute(false).catch(() => {});
+  }
+}, duration);
     await message.channel.send({ content:`${green} ${member.toString()} üyesi, ${message.author} tarafından, \`${reason}\` nedeniyle **sesli kanallarda** susturuldu! \`(Ceza ID: #${penal.id})\``}).then((e) => setTimeout(() => { e.delete(); }, 50000));
      message.react(green)
     if (allah.Main.dmMessages) member.send({ content:`**${message.guild.name}** sunucusunda, **${message.author.tag}** tarafından, **${reason}** sebebiyle, <t:${Math.floor((Date.now() + duration) / 1000)}:R>'ya kadar **sesli kanallarda** susturuldunuz.`}).catch(() => {});
@@ -479,6 +521,12 @@ module.exports = {
     }
     const penal = await client.penalize(message.guild.id, member.user.id, "VOICE-MUTE", true, message.author.id, reason, true, Date.now() + duration);
     message.react(green)
+setTimeout(() => {
+  member.roles.remove(conf.voiceMute).catch(() => {});
+  if (member.voice.channelId && member.voice.serverMute) {
+    member.voice.setMute(false).catch(() => {});
+  }
+}, duration);
     if(msg) msg.delete();
     await message.channel.send({ content:`${green} ${member.toString()} üyesi, ${message.author} tarafından, \`${reason}\` nedeniyle **sesli kanallarda** susturuldu! \`(Ceza ID: #${penal.id})\``}).then((e) => setTimeout(() => { e.delete(); }, 50000));
      message.react(green)
