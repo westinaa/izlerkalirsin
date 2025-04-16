@@ -5,7 +5,7 @@ moment.locale("tr");
 
 module.exports = {
   conf: {
-    aliases: ["serverinfo", "sunucubilgi", "sunucu"],
+    aliases: ["serverinfo", "sunucubilgi", "sunucu", "sb"],
     name: "serverbilgi",
     help: "serverbilgi",
     category: "genel",
