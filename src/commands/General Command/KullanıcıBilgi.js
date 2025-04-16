@@ -15,8 +15,9 @@ module.exports = {
     const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
     const user = member.user;
 
-    const createdAt = `<t:${Math.floor(user.createdTimestamp / 1000)}:F> (<t:${Math.floor(user.createdTimestamp / 1000)}:R>)`;
-    const joinedAt = `<t:${Math.floor(member.joinedTimestamp / 1000)}:F> (<t:${Math.floor(member.joinedTimestamp / 1000)}:R>)`;
+    // Kullanıcı oluşturulma ve katılım tarihlerini Türkçe formatta alalım
+    const createdAt = `\`${moment(user.createdTimestamp).format("LL")}\` (<t:${Math.floor(user.createdTimestamp / 1000)}:R>);`;  // Türkçe formatta oluşturulma tarihi
+    const joinedAt = `\`${moment(member.joinedTimestamp).format("LL")}\` (<t:${Math.floor(member.joinedTimestamp / 1000)}:R>)`;  // Türkçe formatta katılım tarihi
 
     // Cihaz isimlerini Türkçeleştiren kısım
     const devices = member.presence?.clientStatus
@@ -60,7 +61,7 @@ module.exports = {
         },
         {
           name: "<:8912blurplehypsquadevent:1361322328180396133> Profil Rozetleri",
-          value: `${isBooster ? "<:9372blurpleboostlevel9:1361322337386893392> **Booster**" : "<:blurple_cross:1362172098164031528> **Booster değil**"}\n**Tag Durumu:** ${isTag}`,
+          value: `${isBooster ? "<:9372blurpleboostlevel9:1361322337386893392> **Booster**" : "<:blurple_cross:1362172098164031528> **Booster değil**"}\n<:3199blurplejoin:1361323015815565452> **Tag Durumu:** ${isTag}`,
           inline: false,
         },
         {
@@ -76,7 +77,7 @@ module.exports = {
         {
           name: "<:Website:1362163490332344380> Aktif Cihaz(lar)",
           value: devices,
-          inline: false,
+          inline: true,
         },
         {
           name: "<:nitro:1362171568825831595> Discord Nitro",
@@ -84,15 +85,6 @@ module.exports = {
           inline: false,
         }
       );
-
-    // Eğer Nitro varsa ve banner varsa, o zaman şu satır eklenir
-    if (isNitro === "Evet" && bannerURL) {
-      embed.addFields({
-        name: "\u200B", // boş satır
-        value: "<:mavi_guncelleme:1361322791290404987> Banner",
-        inline: false,
-      });
-    }
 
     if (fetchedUser.bio) {
       embed.addFields({
@@ -103,6 +95,15 @@ module.exports = {
     }
 
     if (fetchedUser.banner) embed.setImage(bannerURL);
+
+    // Eğer kullanıcı nitroluysa ve banner varsa, banner açıklaması ekle
+    if (isNitro === "Evet" && fetchedUser.banner) {
+      embed.addFields({
+        name: "\u200B",
+        value: "<:mavi_guncelleme:1361322791290404987> Nitrolu ise Banner Aşağıda",
+        inline: false,
+      });
+    }
 
     message.reply({ embeds: [embed] });
   },
