@@ -41,7 +41,7 @@ module.exports = {
         {
           name: "<:mavi_bilgi:1361322787108687903> Genel Bilgiler",
           value: `<:mavi_bilet:1361322784537448640> **Ad:** ${user.username}\n<:member:1362153697982812453> **Etiket:** #${user.discriminator}\n<:blurple_search:1362163700487688223> **ID:** ${user.id}`,
-          inline: true,
+          inline: false,
         },
         {
           name: "<:blurple_support:1362163705076388121> Oluşturulma Tarihi",
@@ -60,7 +60,7 @@ module.exports = {
         },
         {
           name: "<:mod:1362160134792548392> En Yüksek Rol",
-          value: member.roles.highest.name,
+          value: `<@&${member.roles.highest.id}>`,
           inline: true,
         },
         {
