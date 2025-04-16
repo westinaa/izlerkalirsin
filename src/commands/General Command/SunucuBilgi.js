@@ -14,11 +14,12 @@ module.exports = {
   run: async (client, message, args, prefix) => {
     const guild = message.guild;
 
-    // Üye ve kanal bilgilerini alma
+    // Üyeleri fetch et
     const members = await guild.members.fetch();
     const bots = members.filter((m) => m.user.bot).size;
     const users = members.size - bots;
 
+    // Kanal türlerine göre sayılar
     const channels = guild.channels.cache;
     const textChannels = channels.filter(c => c.type === ChannelType.GuildText).size;
     const voiceChannels = channels.filter(c => c.type === ChannelType.GuildVoice).size;
@@ -26,22 +27,32 @@ module.exports = {
     const stageChannels = channels.filter(c => c.type === ChannelType.GuildStageVoice).size;
     const forumChannels = channels.filter(c => c.type === ChannelType.GuildForum).size;
 
+    // Rol, emoji, sticker sayıları
     const roles = guild.roles.cache.sort((a, b) => b.position - a.position).map(r => r.name);
     const emojis = guild.emojis.cache.size;
     const stickers = guild.stickers.cache.size;
 
     // Son katılanlar
-    const recentMembers = members.sort((a, b) => b.joinedTimestamp - a.joinedTimestamp).slice(0, 5);
-    const recentUsers = recentMembers.map(m => `${m.user.tag} - <t:${Math.floor(m.joinedTimestamp / 1000)}:R>`).join("\n");
+    const recentMembers = Array.from(members.values())
+      .filter(m => m.joinedTimestamp)
+      .sort((a, b) => b.joinedTimestamp - a.joinedTimestamp)
+      .slice(0, 5);
+
+    const recentUsers = recentMembers
+      .map(m => `${m.user.tag} - <t:${Math.floor(m.joinedTimestamp / 1000)}:R>`)
+      .join("\n");
 
     // Top 5 aktif kullanıcı
     const messageData = await require("../../../settings/schemas/messageUser").find({ guildID: guild.id });
-    messageData.sort((a, b) => b.TotalStat - a.TotalStat);
-    const topUsers = messageData.slice(0, 5).map((m, i) => `<@${m.userID}> - Mesaj Sayısı: ${m.TotalStat}`).join("\n");
+    const sortedMessageData = messageData.sort((a, b) => b.TotalStat - a.TotalStat);
+    const topUsers = sortedMessageData
+      .slice(0, 5)
+      .map((m, i) => `<@${m.userID}> - Mesaj Sayısı: ${m.TotalStat}`)
+      .join("\n");
 
     // Aktif ve inaktif kullanıcı oranı
     const onlineUsers = members.filter((m) => m.presence?.status === "online").size;
-    const offlineUsers = members.filter((m) => m.presence?.status === "offline").size;
+    const offlineUsers = members.filter((m) => !m.presence || m.presence.status === "offline").size;
 
     const embed = new EmbedBuilder()
       .setColor("Blurple")
