@@ -42,17 +42,20 @@ module.exports = {
       .map(m => `${m.user.tag} - <t:${Math.floor(m.joinedTimestamp / 1000)}:R>`)
       .join("\n");
 
-    // Top 5 aktif kullanıcı
-    const messageData = await require("../../../settings/schemas/messageUser").find({ guildID: guild.id });
-    const sortedMessageData = messageData.sort((a, b) => b.TotalStat - a.TotalStat);
-    const topUsers = sortedMessageData
-      .slice(0, 5)
-      .map((m, i) => `<@${m.userID}> - Mesaj Sayısı: ${m.TotalStat}`)
-      .join("\n");
-
     // Aktif ve inaktif kullanıcı oranı
     const onlineUsers = members.filter((m) => m.presence?.status === "online").size;
     const offlineUsers = members.filter((m) => !m.presence || m.presence.status === "offline").size;
+
+    // Sesli kanalda aktif kullanıcılar
+    const voiceMembers = members.filter(m => m.voice?.channel).size;
+
+    // En kalabalık ses kanalı
+    const voiceChannelsActive = channels.filter(c => c.type === ChannelType.GuildVoice && c.members.size > 0);
+    const mostCrowdedChannel = voiceChannelsActive.sort((a, b) => b.members.size - a.members.size).first();
+
+    const mostCrowdedText = mostCrowdedChannel
+      ? `${mostCrowdedChannel.name} kanalında **${mostCrowdedChannel.members.size}** kişi var.`
+      : "Şu anda aktif bir ses kanalı yok.";
 
     const embed = new EmbedBuilder()
       .setColor("Blurple")
@@ -66,12 +69,12 @@ module.exports = {
         },
         {
           name: "<:member:1362153697982812453> Üye Bilgileri",
-          value: `<:mavi_arkadasekle:1361322770935447715> **Toplam:** ${members.size}\n<:member:1362153697982812453> **Kullanıcılar:** ${users}\n<:bot:1318649983792185444> **Botlar:** ${bots}`,
+          value: `<:mavi_arkadasekle:1361322770935447715> **Toplam:** ${members.size}\n<:member:1362153697982812453> **Kullanıcılar:** ${users}\n<:bot:1362157536895176947> **Botlar:** ${bots}`,
           inline: true,
         },
         {
           name: "<:mavi_rehber:1361322809292226740> Kanal Bilgileri",
-          value: `<:mavi_sohbet:1361322813272883460> **Metin:** ${textChannels}\n<:8719blurpleundeafened:1361322324959301703> **Ses:** ${voiceChannels}\n<:8319folder:1361323126507704350> **Kategoriler:** ${categories}\n🎙️ **Stage:** ${stageChannels}\n🧵 **Forum:** ${forumChannels}`,
+          value: `<:tag:1362160034120732904> **Metin:** ${textChannels}\n<:8719blurpleundeafened:1361322324959301703> **Ses:** ${voiceChannels}\n<:8319folder:1361323126507704350> **Kategoriler:** ${categories}\n<:Stage_Event:1362163515212824576> **Stage:** ${stageChannels}\n<:mavi_sohbet:1361322813272883460> **Forum:** ${forumChannels}`,
           inline: true,
         },
         {
@@ -81,7 +84,7 @@ module.exports = {
         },
         {
           name: "<:9372blurpleboostlevel9:1361322337386893392> Boost Bilgisi",
-          value: `<a:wumpus:1361778561937314135> **Seviye:** ${guild.premiumTier}\n<:9372blurpleboostlevel9:1361322337386893392> **Boost Sayısı:** ${guild.premiumSubscriptionCount || 0}`,
+          value: `<:blurple_rocket:1362163698088677546> **Seviye:** ${guild.premiumTier}\n<:Subscription_levels_mobile:1362163508434829676> **Boost Sayısı:** ${guild.premiumSubscriptionCount || 0}`,
           inline: true,
         },
         {
@@ -95,12 +98,17 @@ module.exports = {
           inline: false,
         },
         {
-          name: "<:mavi_bildirim:1361322782176186481> Top 5 Aktif Kullanıcı",
-          value: topUsers || "Veri Bulunamadı",
+          name: "<:blurple_voicechannel:1362166090687582339> Aktif Sesli Kullanıcılar",
+          value: `Şu anda **${voiceMembers}** kişi bir ses kanalında.`,
           inline: false,
         },
         {
-          name: "<a:wumpus:1361778561937314135> Çevrimiçi / Çevrimdışı Kullanıcı Oranı",
+          name: "<:stat:1057474273897369690> En Kalabalık Ses Kanalı",
+          value: mostCrowdedText,
+          inline: false,
+        },
+        {
+          name: "<:blurple_support:1362163705076388121> Çevrimiçi / Çevrimdışı Kullanıcı Oranı",
           value: `<:online:1362150449339437098> **Çevrimiçi Kullanıcılar:** ${onlineUsers} | <:offline:1362150471695077557> **Çevrimdışı Kullanıcılar:** ${offlineUsers}`,
           inline: false,
         }
