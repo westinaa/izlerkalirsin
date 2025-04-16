@@ -18,19 +18,24 @@ module.exports = {
     const createdAt = `<t:${Math.floor(user.createdTimestamp / 1000)}:F> (<t:${Math.floor(user.createdTimestamp / 1000)}:R>)`;
     const joinedAt = `<t:${Math.floor(member.joinedTimestamp / 1000)}:F> (<t:${Math.floor(member.joinedTimestamp / 1000)}:R>)`;
 
+    // Cihaz isimlerini Türkçeleştiren kısım
     const devices = member.presence?.clientStatus
-      ? Object.keys(member.presence.clientStatus).map(dev => dev.charAt(0).toUpperCase() + dev.slice(1)).join(", ")
+      ? Object.keys(member.presence.clientStatus)
+          .map(dev => {
+            if (dev === "desktop") return "PC";
+            if (dev === "mobile") return "Mobil";
+            if (dev === "web") return "Tarayıcı";
+            return dev;
+          })
+          .join(", ")
       : "Bilinmiyor";
 
     const fetchedUser = await user.fetch();
     const bannerURL = fetchedUser.bannerURL({ dynamic: true, size: 1024 });
 
-    // Profil rozetlerini kontrol et
     const isBooster = member.premiumSince ? true : false;
     const tagRoleID = "1357161320679477459"; // <-- TAG ROLÜ
     const isTag = member.roles.cache.has(tagRoleID) ? "Taglı" : "Tagsız";
-
-    // Nitro kontrolü: banner varsa varsayım olarak nitro
     const isNitro = fetchedUser.banner ? "Evet" : "Hayır";
 
     const embed = new EmbedBuilder()
@@ -80,16 +85,14 @@ module.exports = {
         }
       );
 
-    // Profil açıklaması (bio)
     if (fetchedUser.bio) {
       embed.addFields({
         name: "<:blurple_shop:1362163706821349417> Bio",
         value: fetchedUser.bio,
-        inline: false
+        inline: false,
       });
     }
 
-    // Banner resmi varsa
     if (fetchedUser.banner) embed.setImage(bannerURL);
 
     message.reply({ embeds: [embed] });
