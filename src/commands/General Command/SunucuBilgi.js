@@ -103,7 +103,7 @@ module.exports = {
           inline: false,
         },
         {
-          name: "<:stat:1057474273897369690> En Kalabalık Ses Kanalı",
+          name: "<:stat:1362160182972649483> En Kalabalık Ses Kanalı",
           value: mostCrowdedText,
           inline: false,
         },
