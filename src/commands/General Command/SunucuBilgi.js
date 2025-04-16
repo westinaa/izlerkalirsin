@@ -63,52 +63,52 @@ module.exports = {
       .setThumbnail(guild.iconURL({ dynamic: true, size: 512 }))
       .addFields(
         {
-          name: "<:mavi_bilgi:1361322787108687903> Genel Bilgiler",
+          name: "<:mavi_bilgi:1361322787108687903> Genel Bilgiler:",
           value: `<:mavi_bilet:1361322784537448640> **Sunucu Adı:** ${guild.name}\n<:3199blurplejoin:1361323015815565452> **ID:** ${guild.id}\n<:timeout:1361011169283801392> **Oluşturulma:** <t:${Math.floor(guild.createdTimestamp / 1000)}:F> (<t:${Math.floor(guild.createdTimestamp / 1000)}:R>)\n<:btac:1362154535723733003> **Sahibi:** <@${guild.ownerId}>`,
           inline: false,
         },
         {
-          name: "<:member:1362153697982812453> Üye Bilgileri",
+          name: "<:member:1362153697982812453> Üye Bilgileri:",
           value: `<:mavi_arkadasekle:1361322770935447715> **Toplam:** ${members.size}\n<:member:1362153697982812453> **Kullanıcılar:** ${users}\n<:bot:1362157536895176947> **Botlar:** ${bots}`,
           inline: true,
         },
         {
-          name: "<:mavi_rehber:1361322809292226740> Kanal Bilgileri",
+          name: "<:mavi_rehber:1361322809292226740> Kanal Bilgileri:",
           value: `<:tag:1362160034120732904> **Metin:** ${textChannels}\n<:8719blurpleundeafened:1361322324959301703> **Ses:** ${voiceChannels}\n<:8319folder:1361323126507704350> **Kategoriler:** ${categories}\n<:Stage_Event:1362163515212824576> **Stage:** ${stageChannels}\n<:mavi_sohbet:1361322813272883460> **Forum:** ${forumChannels}`,
           inline: true,
         },
         {
-          name: "<:mavi_bilgi:1361322787108687903> Roller & Emojiler",
+          name: "<:mavi_bilgi:1361322787108687903> Roller & Emojiler:",
           value: `<:mavi_rehber:1361322809292226740> **Rol Sayısı:** ${roles.length}\n<a:dc:1361778193010262236> **Emojiler:** ${emojis}\n<:mavi_resim:1361322811171409960> **Stickerlar:** ${stickers}`,
           inline: true,
         },
         {
-          name: "<:9372blurpleboostlevel9:1361322337386893392> Boost Bilgisi",
+          name: "<:9372blurpleboostlevel9:1361322337386893392> Boost Bilgisi:",
           value: `<:blurple_rocket:1362163698088677546> **Seviye:** ${guild.premiumTier}\n<:Subscription_levels_mobile:1362163508434829676> **Boost Sayısı:** ${guild.premiumSubscriptionCount || 0}`,
           inline: true,
         },
         {
-          name: "<:mavi_bilgi:1361322787108687903> Diğer",
+          name: "<:mavi_bilgi:1361322787108687903> Diğer:",
           value: `<:emoji_25:1358335646090920036> **Doğrulama Seviyesi:** ${guild.verificationLevel}\n<:mavi_resim:1361322811171409960> **Banner:** ${guild.banner ? "[Görüntüle](" + guild.bannerURL({ size: 1024 }) + ")" : "Yok"}\n<:mavi_resim:1361322811171409960> **Splash Image:** ${guild.splash ? "[Görüntüle](" + guild.splashURL({ size: 1024 }) + ")" : "Yok"}`,
           inline: false,
         },
         {
-          name: "<:timeout:1361011169283801392> Son Katılanlar",
+          name: "<:timeout:1361011169283801392> Son Katılanlar:",
           value: recentUsers || "Hiç katılım yok.",
           inline: false,
         },
         {
-          name: "<:blurple_voicechannel:1362166090687582339> Aktif Sesli Kullanıcılar",
+          name: "<:blurple_voicechannel:1362166090687582339> Aktif Sesli Kullanıcılar:",
           value: `Şu anda **${voiceMembers}** kişi bir ses kanalında.`,
           inline: false,
         },
         {
-          name: "<:stat:1362160182972649483> En Kalabalık Ses Kanalı",
+          name: "<:stat:1362160182972649483> En Kalabalık Ses Kanalı:",
           value: mostCrowdedText,
           inline: false,
         },
         {
-          name: "<:blurple_support:1362163705076388121> Çevrimiçi / Çevrimdışı Kullanıcı Oranı",
+          name: "<:blurple_support:1362163705076388121> Çevrimiçi / Çevrimdışı Kullanıcı Oranı:",
           value: `<:online:1362150449339437098> **Çevrimiçi Kullanıcılar:** ${onlineUsers} | <:offline:1362150471695077557> **Çevrimdışı Kullanıcılar:** ${offlineUsers}`,
           inline: false,
         }
