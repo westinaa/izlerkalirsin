@@ -57,7 +57,12 @@ module.exports = {
         {
           name: "<:mavi_bilgi:1361322787108687903> Genel Bilgiler:",
           value: `<:mavi_bilet:1361322784537448640> **Ad:** ${user.username}\n<:member:1362153697982812453> **ID:** ${user.id}\n<:blurple_search:1362163700487688223> **Etiket:** <@${user.id}>`,
-          inline: false,
+          inline: true,
+        },
+        {
+          name: "<:statt:1362184848193622088> Kullanıcı Durumu:", // Durumu buraya ekleyelim
+          value: statusMessage, // Durum burada gösterilecek
+          inline: true,
         },
         {
           name: "<:blurple_support:1362163705076388121> Oluşturulma Tarihi:",
@@ -92,11 +97,6 @@ module.exports = {
         {
           name: "<:nitro:1362171568825831595> Discord Nitro:",
           value: `${isNitro}`,
-          inline: false,
-        },
-        {
-          name: "<:statt:1362184848193622088> Kullanıcı Durumu:", // Durumu buraya ekleyelim
-          value: statusMessage, // Durum burada gösterilecek
           inline: false,
         }
       );
