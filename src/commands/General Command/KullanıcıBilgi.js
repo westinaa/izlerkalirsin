@@ -39,6 +39,16 @@ module.exports = {
     const isTag = member.roles.cache.has(tagRoleID) ? "Taglı" : "Tagsız";
     const isNitro = fetchedUser.banner ? "Evet" : "Hayır";
 
+    // Kullanıcı durumunu kontrol et
+    const userStatus = member.presence ? member.presence.status : "offline"; // Durum bilgisi: online, idle, dnd, offline
+
+    // Durumu insan anlaşılır formatta dönüştürme
+    let statusMessage = "Bilinmiyor";
+    if (userStatus === "online") statusMessage = "<:online1:1362185128608141323> Çevrimiçi";
+    else if (userStatus === "idle") statusMessage = "<:idle:1362185213618425968> Boşta";
+    else if (userStatus === "dnd") statusMessage = "<:dnd1:1362185302168305724> Rahatsız Etmeyin";
+    else if (userStatus === "offline") statusMessage = "<:offline1:1362185272535548147> Çevrimdışı/Görünmez";
+
     const embed = new EmbedBuilder()
       .setColor(member.displayHexColor || "Random")
       .setAuthor({ name: `${user.tag}`, iconURL: user.displayAvatarURL({ dynamic: true }) })
@@ -46,7 +56,7 @@ module.exports = {
       .addFields(
         {
           name: "<:mavi_bilgi:1361322787108687903> Genel Bilgiler:",
-          value: `<:mavi_bilet:1361322784537448640> **Ad:** ${user.username}\n<:member:1362153697982812453> **Etiket:** <@${user.id}>\n<:blurple_search:1362163700487688223> **ID:** ${user.id}`,
+          value: `<:mavi_bilet:1361322784537448640> **Ad:** ${user.username}\n<:member:1362153697982812453> **ID:** ${user.id}\n<:blurple_search:1362163700487688223> **Etiket:** <@${user.id}>`,
           inline: false,
         },
         {
@@ -82,6 +92,11 @@ module.exports = {
         {
           name: "<:nitro:1362171568825831595> Discord Nitro:",
           value: `${isNitro}`,
+          inline: false,
+        },
+        {
+          name: "<:statt:1362184848193622088> Kullanıcı Durumu:", // Durumu buraya ekleyelim
+          value: statusMessage, // Durum burada gösterilecek
           inline: false,
         }
       );
