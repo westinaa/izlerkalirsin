@@ -39,7 +39,7 @@ module.exports = {
       .slice(0, 5);
 
     const recentUsers = recentMembers
-      .map(m => `${m.user.tag} - <t:${Math.floor(m.joinedTimestamp / 1000)}:R>`)
+      .map(m => `<@${m.user.id}> - <t:${Math.floor(m.joinedTimestamp / 1000)}:R>`)
       .join("\n");
 
     // Aktif ve inaktif kullanıcı oranı
