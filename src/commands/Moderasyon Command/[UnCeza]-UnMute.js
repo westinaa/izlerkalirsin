@@ -22,7 +22,6 @@ module.exports = {
         .then((e) => setTimeout(() => { e.delete(); }, 10000));
     }
 
-    // Yetki Kontrolü
     if (!message.member.permissions.has(PermissionsBitField.Flags.Administrator) && !conf.cmuteHammer.some(x => message.member.roles.cache.has(x))) {
       message.react(red);
       message.reply({ embeds: [new EmbedBuilder()
@@ -40,7 +39,6 @@ module.exports = {
       return;
     }
 
-    // Mute Kontrolü
     if (!conf.chatMute || !Array.isArray(conf.chatMute) || !conf.chatMute.length) {
       return message.reply({ content: "Chat mute dizisi doğru bir şekilde yüklenmemiş!" });
     }
@@ -55,7 +53,6 @@ module.exports = {
       return;
     }
 
-    // Yetki Kontrolü (Kendi Yetkisiyle Karşılaştırma)
     if (!message.member.permissions.has(PermissionsBitField.Flags.Administrator) && member.roles.highest.position >= message.member.roles.highest.position) {
       message.react(red);
       message.reply({ embeds: [new EmbedBuilder()
@@ -64,7 +61,6 @@ module.exports = {
       return;
     }
 
-    // Üye Yönetilebiliyor mu?
     if (!member.manageable) {
       message.react(red);
       message.reply({ embeds: [new EmbedBuilder().setDescription(`${red} Bu üyenin susturmasını kaldıramıyorum!`)] })
@@ -72,7 +68,6 @@ module.exports = {
       return;
     }
 
-    // Butonları Hazırlama
     let mute = new ButtonBuilder()
       .setCustomId("mute")
       .setLabel("Chat Mute")
@@ -85,7 +80,6 @@ module.exports = {
       .setStyle(ButtonStyle.Secondary)
       .setEmoji(sesmute);
 
-    // Mute Durumlarına Göre Butonları Güncelleme
     if (!conf.chatMute.some(x => member.roles.cache.has(x))) {
       mute.setStyle(ButtonStyle.Secondary).setDisabled(true);
     } else {
@@ -120,12 +114,15 @@ module.exports = {
         mute.setStyle(ButtonStyle.Secondary).setDisabled(true);
 
         message.react(green);
-        // Chat mute rolünü kaldır
-        await member.roles.remove(conf.chatMute);
+
+        for (const roleID of conf.chatMute) {
+          if (member.roles.cache.has(roleID)) await member.roles.remove(roleID).catch(() => {});
+        }
+
         const data = await penals.findOne({ userID: member.user.id, guildID: message.guild.id, type: "CHAT-MUTE", active: true });
         if (data) {
-          data.active = false; // Cezayı geçerli olmaktan çıkar
-          await data.save(); // Veritabanına kaydet
+          data.active = false;
+          await data.save();
         }
 
         if (allah.Main.dmMessages) member.send({ content: `**${message.guild.name}** sunucusunda, **${message.author.tag}** tarafından susturmanız kaldırıldı!` }).catch(() => {});
@@ -138,15 +135,14 @@ module.exports = {
         await msg.edit({ embeds: [westina], components: [row] });
 
         const log = new EmbedBuilder()
-          .setDescription(`**${member ? member.user.tag : member.user.username}** adlı kullanıcının **${message.author.tag}** tarafından Chat Mute cezası kaldırıldı.`)
+          .setDescription(`**${member.user.tag}** adlı kullanıcının **${message.author.tag}** tarafından Chat Mute cezası kaldırıldı.`)
           .addFields(
-            { name: "Affedilen", value: `[${member ? member.user.tag : member.user.username}](https://discord.com/users/${member.user.id})`, inline: true },
+            { name: "Affedilen", value: `[${member.user.tag}](https://discord.com/users/${member.user.id})`, inline: true },
             { name: "Affeden", value: `[${message.author.tag}](https://discord.com/users/${message.author.id})`, inline: true },
             { name: "Ceza Bitiş", value: `<t:${Math.floor((Date.now()) / 1000)}:R>`, inline: true },
           )
           .setFooter({ text: `${moment(Date.now()).format("LLL")}` });
-        message.guild.channels.cache.get(conf.cmuteLogChannel).wsend({ embeds: [log] });
-
+        message.guild.channels.cache.get(conf.cmuteLogChannel)?.wsend({ embeds: [log] });
       }
 
       if (button.customId === "vmute") {
@@ -155,16 +151,23 @@ module.exports = {
         vmute.setStyle(ButtonStyle.Secondary).setDisabled(true);
 
         message.react(green);
-        // Sesli mute rolünü kaldır
-        await member.roles.remove(conf.voiceMute);
-        if (member.voice.channelId && member.voice.serverMute) {
-          await member.voice.setMute(false); // Sesli kanal mute kaldır
+
+        for (const roleID of conf.voiceMute) {
+          if (member.roles.cache.has(roleID)) await member.roles.remove(roleID).catch(() => {});
         }
+
+        if (member.voice.channelId && member.voice.serverMute) {
+          const botMember = message.guild.members.me;
+          if (botMember.permissions.has(PermissionsBitField.Flags.MuteMembers)) {
+            await member.voice.setMute(false).catch(() => {});
+          }
+        }
+
         const data = await penals.findOne({ userID: member.user.id, guildID: message.guild.id, type: "VOICE-MUTE", active: true });
         if (data) {
-          data.active = false; // Cezayı geçerli olmaktan çıkar
-          data.removed = true; // Kaldırıldığını belirt
-          await data.save(); // Veritabanına kaydet
+          data.active = false;
+          data.removed = true;
+          await data.save();
         }
 
         if (allah.Main.dmMessages) member.send({ content: `**${message.guild.name}** sunucusunda, **${message.author.tag}** tarafından **sesli kanallarda** olan susturmanız kaldırıldı!` }).catch(() => {});
@@ -177,14 +180,14 @@ module.exports = {
         await msg.edit({ embeds: [westina], components: [row] });
 
         const log = new EmbedBuilder()
-          .setDescription(`**${member ? member.user.tag : member.user.username}** adlı kullanıcının **${message.author.tag}** tarafından Ses Mute cezası kaldırıldı.`)
+          .setDescription(`**${member.user.tag}** adlı kullanıcının **${message.author.tag}** tarafından Ses Mute cezası kaldırıldı.`)
           .addFields(
-            { name: "Affedilen", value: `[${member ? member.user.tag : member.user.username}](https://discord.com/users/${member.user.id})`, inline: true },
+            { name: "Affedilen", value: `[${member.user.tag}](https://discord.com/users/${member.user.id})`, inline: true },
             { name: "Affeden", value: `[${message.author.tag}](https://discord.com/users/${message.author.id})`, inline: true },
             { name: "Ceza Bitiş", value: `<t:${Math.floor((Date.now()) / 1000)}:R>`, inline: true },
           )
           .setFooter({ text: `${moment(Date.now()).format("LLL")}` });
-        message.guild.channels.cache.get(conf.vmuteLogChannel).wsend({ embeds: [log] });
+        message.guild.channels.cache.get(conf.vmuteLogChannel)?.wsend({ embeds: [log] });
       }
     });
   },
