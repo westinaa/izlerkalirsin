@@ -45,42 +45,42 @@ module.exports = {
       .setThumbnail(user.displayAvatarURL({ dynamic: true, size: 512 }))
       .addFields(
         {
-          name: "<:mavi_bilgi:1361322787108687903> Genel Bilgiler",
-          value: `<:mavi_bilet:1361322784537448640> **Ad:** ${user.username}\n<:member:1362153697982812453> **Etiket:** #${user.discriminator}\n<:blurple_search:1362163700487688223> **ID:** ${user.id}`,
+          name: "<:mavi_bilgi:1361322787108687903> Genel Bilgiler:",
+          value: `<:mavi_bilet:1361322784537448640> **Ad:** ${user.username}\n<:member:1362153697982812453> **Etiket:** <@${user.id}>\n<:blurple_search:1362163700487688223> **ID:** ${user.id}`,
           inline: false,
         },
         {
-          name: "<:blurple_support:1362163705076388121> Oluşturulma Tarihi",
+          name: "<:blurple_support:1362163705076388121> Oluşturulma Tarihi:",
           value: createdAt,
           inline: true,
         },
         {
-          name: "<:blurple_plus:1362163695358181478> Sunucuya Katılım",
+          name: "<:blurple_plus:1362163695358181478> Sunucuya Katılım:",
           value: joinedAt,
           inline: true,
         },
         {
-          name: "<:8912blurplehypsquadevent:1361322328180396133> Profil Rozetleri",
+          name: "<:8912blurplehypsquadevent:1361322328180396133> Profil Rozetleri:",
           value: `${isBooster ? "<:9372blurpleboostlevel9:1361322337386893392> **Booster**" : "<:blurple_cross:1362172098164031528> **Booster değil**"}\n<:3199blurplejoin:1361323015815565452> **Tag Durumu:** ${isTag}`,
           inline: false,
         },
         {
-          name: "<:mod:1362160134792548392> En Yüksek Rol",
+          name: "<:mod:1362160134792548392> En Yüksek Rol:",
           value: `<@&${member.roles.highest.id}>`,
           inline: true,
         },
         {
-          name: "<:staff:1362171335291175063> Yönetici mi?",
+          name: "<:staff:1362171335291175063> Yönetici mi?:",
           value: member.permissions.has("Administrator") ? "Evet" : "Hayır",
           inline: true,
         },
         {
-          name: "<:Website:1362163490332344380> Aktif Cihaz(lar)",
+          name: "<:Website:1362163490332344380> Aktif Cihaz(lar):",
           value: devices,
-          inline: true,
+          inline: false,
         },
         {
-          name: "<:nitro:1362171568825831595> Discord Nitro",
+          name: "<:nitro:1362171568825831595> Discord Nitro:",
           value: `${isNitro}`,
           inline: false,
         }
@@ -88,7 +88,7 @@ module.exports = {
 
     if (fetchedUser.bio) {
       embed.addFields({
-        name: "<:blurple_shop:1362163706821349417> Bio",
+        name: "<:blurple_shop:1362163706821349417> Bio:",
         value: fetchedUser.bio,
         inline: false,
       });
@@ -100,7 +100,7 @@ module.exports = {
     if (isNitro === "Evet" && fetchedUser.banner) {
       embed.addFields({
         name: "\u200B",
-        value: "<:mavi_guncelleme:1361322791290404987> Nitrolu ise Banner Aşağıda",
+        value: "<:mavi_guncelleme:1361322791290404987> Banner",
         inline: false,
       });
     }
