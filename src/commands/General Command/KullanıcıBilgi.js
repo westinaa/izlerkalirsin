@@ -52,12 +52,12 @@ module.exports = {
         {
           name: "<:blurple_support:1362163705076388121> Oluşturulma Tarihi:",
           value: createdAt,
-          inline: true,
+          inline: false,
         },
         {
           name: "<:blurple_plus:1362163695358181478> Sunucuya Katılım:",
           value: joinedAt,
-          inline: true,
+          inline: false,
         },
         {
           name: "<:8912blurplehypsquadevent:1361322328180396133> Profil Rozetleri:",
