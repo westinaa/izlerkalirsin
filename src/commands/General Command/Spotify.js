@@ -17,7 +17,7 @@ module.exports = {
       
         const embed = new EmbedBuilder()
             .setColor("#1DB954") 
-            .setTitle("<:spotify:1352949750457958443> Spotify Dinleme Bilgisi")
+            .setTitle("<:spotify:1363501750270824698> Spotify Dinleme Bilgisi")
             .setFooter({ text: `İsteyen: ${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true }) });
 
         if (member && member.presence && member.presence.activities && member.presence.activities.some(activity => activity.name === "Spotify" && activity.type === ActivityType.Listening)) {
