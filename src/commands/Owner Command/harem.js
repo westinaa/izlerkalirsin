@@ -23,7 +23,7 @@ module.exports = {
 
     const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
     if (!member) {
-      return message.reply("<a:amw:1353018181886677094> **Sultanım**, \nLütfen haremine ekleyeceğin kullanıcıyı etiketle...");
+      return message.reply("<a:yalarim:1368295093659893911> **Sultanım**, \nLütfen haremine ekleyeceğin kullanıcıyı etiketle...");
     }
 
     const role = message.guild.roles.cache.get(roleId);
@@ -33,10 +33,10 @@ module.exports = {
 
     if (member.roles.cache.has(roleId)) {
       await member.roles.remove(roleId);
-      return message.reply(`<a:abowblue2:1353018169551360011> **Sultanım Çok Yaşa!** \n${member} haremden kovuldu!`);
+      return message.reply(`<:kedyy:1368294877091074209> ${member} haremden kovuldu!`);
     } else {
       await member.roles.add(roleId);
-      return message.reply(`<a:abowblue2:1353018169551360011> **Sultanım Çok Yaşa!** \n${member} başarıyla hareme alındı!`);
+      return message.reply(`<a:kivircik:1368294758384144496> ${member} başarıyla hareme alındı!`);
     }
   },
 };
